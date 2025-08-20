@@ -44,8 +44,8 @@
       .box .row.buttons {
         flex: 3 0 auto;
         text-align: left;
-        width: 50%;
-        font-family: monospace;
+        width: 100%;
+        /*font-family: monospace;*/
         align-self: center;
         align-content: center;
       }
@@ -260,12 +260,12 @@
                   mapped = "т";
                 } else if (chunk === "dz" && nextChar === "i") {
                   mapped = "д";
-                } else if (chunk === "d" && softVowels.includes(nextTwo)) {
-                  mapped = "ді"; // or "ди" for RU
+                } } else if (chunk === "d" && softVowels.includes(nextTwo)) {
+                  mapped = (orth === "russian") ? "ди" : "ді";
                 } else if (chunk === "t" && softVowels.includes(nextTwo)) {
-                  mapped = "ті"; // or "ти" for RU
+                  mapped = (orth === "russian") ? "ти" : "ті";
                 } else if (chunk === "r" && softVowels.includes(nextTwo)) {
-                  mapped = "рі"; // or "ри" for RU
+                  mapped = (orth === "russian") ? "ри" : "рі";
                 } else if (chunk === "dź" && nextTwo === "ci") {
                   mapped = "дь";
                 } else if (chunk === "rz" && nextTwo === "ci") {
