@@ -102,10 +102,8 @@
           <!-- readonly -->
       </div>
       <div class="row buttons">
-        <label>
-          <input type="radio" name="orthography" value="russian" checked>Russian-style orthography</label>
-        <label>
-          <input type="radio" name="orthography" value="ukrainian">Ukrainian-style orthography</label>
+        <input id="ru" type="radio" name="orthography" value="russian" checked /><label for="ru">Russian-style orthography</label>
+        <input id="ua" type="radio" name="orthography" value="ukrainian" /><label for="ua">Ukrainian-style orthography</label>
       </div>
       <div class="row footer"></div>
 
@@ -169,9 +167,7 @@
           ja:"я", ją:"ѭ", je:"є", ję:"ѩ", ji:"і", jo:"ьо", jó:"ю̊", ju:"ю"
         };
 
-        const palatalizingConsonants = [
-          "dź","l","rz","ć","ń","ś","śl","śm","śn","śr","św","ź","źdź","źr"
-        ];
+        const palatalizingConsonants = ["dź","l","rz","ć","ń","ś","śl","śm","śn","śr","św","ź","źdź","źr"];
 
         const softVowels = ["ia","ią","ie","ię","io","ió","iu"];
 
