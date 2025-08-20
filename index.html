@@ -260,12 +260,12 @@
                   mapped = "т";
                 } else if (chunk === "dz" && nextChar === "i") {
                   mapped = "д";
-                } else if (chunk === "d" && softVowels.includes(nextTwo)) {
-                  mapped = (orth === "russian") ? "ди" : "ді";
-                } else if (chunk === "t" && softVowels.includes(nextTwo)) {
-                  mapped = (orth === "russian") ? "ти" : "ті";
-                } else if (chunk === "r" && softVowels.includes(nextTwo)) {
-                  mapped = (orth === "russian") ? "ри" : "рі";
+                // } else if (chunk === "d" && softVowels.includes(nextTwo)) {
+                //   mapped = (orth === "russian") ? "ди" : "ді";
+                // } else if (chunk === "t" && softVowels.includes(nextTwo)) {
+                //   mapped = (orth === "russian") ? "ти" : "ті";
+                // } else if (chunk === "r" && softVowels.includes(nextTwo)) {
+                //   mapped = (orth === "russian") ? "ри" : "рі";
                 } else if (chunk === "dź" && nextTwo === "ci") {
                   mapped = "дь";
                 } else if (chunk === "rz" && nextTwo === "ci") {
