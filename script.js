@@ -9,15 +9,13 @@ const EXCEPTIONS_RU = {
   dialekt: "диалект",
   diametr: "диаметр",
   diaspora: "диаспора",
-  zamarzać: "замарзать",
-  mierzić: "мерзить",
   murzasichle: "мурзасихле",
   erzac: "эрзац",
   tarzan: "тарзан",
-
+  
   mafia: "мафия", // мафиа, мафйа
   mafie: "мафие", // мафиэ, мафйэ
-  mafiom: "мафиём",   // мафиом, мафйом
+  mafiom: "мафиём", // мафиом, мафйом
   mafię: "мафиѩ", // мафиѧ, мафйѧ
   mafią: "мафиѭ", // мафиѫ, мафйѫ
   mafiami: "мафиями", // мафиами, мафйами
@@ -26,7 +24,7 @@ const EXCEPTIONS_RU = {
 
   magia: "магия", // магиа, магйа
   magie: "магие", // магиэ, магйэ
-  magiom: "магиём",   // магиом, магйом
+  magiom: "магиём", // магиом, магйом
   magię: "магиѩ", // магиѧ, магйѧ
   magią: "магиѭ", // магиѫ, магйѫ
   magiami: "магиями", // магиами, магйами
@@ -35,7 +33,7 @@ const EXCEPTIONS_RU = {
 
   mania: "мания", // маниа, манйа
   manie: "мание", // маниэ, манйэ
-  maniom: "маниём",   // маниом, манйом
+  maniom: "маниём", // маниом, манйом
   manię: "маниѩ", // маниѧ, манйѧ
   manią: "маниѭ", // маниѫ, манйѫ
   maniami: "маниями", // маниами, манйами
@@ -53,6 +51,89 @@ const EXCEPTIONS_RU = {
   diabłami: "диаблами",
   diable: "диабле",
   diabłach: "диаблах",
+
+  zamarzać: "замарзать",
+  zamarzam: "замарзам",
+  zamarzamy: "замарзамы",
+  zamarzasz: "замарзаш",
+  zamarzacie: "замарзате",
+  zamarza: "замарза",
+  zamarzają: "замарзаѭ",
+  zamarzałem: "замарзалэм",
+  zamarzał: "замарзал",
+  zamarzałam: "замарзалам",
+  zamarzała: "замарзала",
+  zamarzałom: "замарзалом",
+  zamarzało: "замарзало",
+  zamarzaliśmy: "замарзалисми",
+  zamarzali: "замарзали",
+  zamarzałyśmy: "замарзалысми",
+  zamarzały: "замарзалы",
+  zamarzałeś: "замарзалэсь",
+  zamarzałaś: "замарзалась",
+  zamarzałoś: "замарзалось",
+  zamarzaliście: "замарзалисте",
+  zamarzałyście: "замарзалысте",
+  zamarzano: "замарзано",
+  zamarzałbym: "замарзалбым",
+  zamarzałabym: "замарзалабым",
+  zamarzałobym: "замарзалобым",
+  zamarzalibyśmy: "замарзалибысми",
+  zamarzałybyśmy: "замарзалыбысми",
+  zamarzałbyś: "замарзалбысь",
+  zamarzałabyś: "замарзалабысь",
+  zamarzałobyś: "замарзалобысь",
+  zamarzalibyście: "замарзалибысте",
+  zamarzałybyście: "замарзалыбысте",
+  zamarzałby: "замарзалбы",
+  zamarzałaby: "замарзалабы",
+  zamarzałoby: "замарзалобы",
+  zamarzaliby: "замарзалибы",
+  zamarzałyby: "замарзалыбы",
+  zamarzajmy: "замарзаймы",
+  zamarzaj: "замарзай",
+  zamarzajcie: "замарзайте",
+  zamarzający: "замарзаѭци",
+  zamarzająca: "замарзаѭца",
+  zamarzające: "замарзаѭце",
+  zamarzając: "замарзаѭц",
+  zamarzanie: "замарзане",
+
+  mierzić: "мерзить",
+  mierziły: "мерзилы",
+  mierzili: "мерзили",
+  mierziło: "мерзило",
+  mierziła: "мерзила",
+  mierziłam: "мерзилам",
+  mierził: "мерзил",
+  mierziłem: "мерзилэм",
+  mierzi: "мерзи",
+  mierzimy: "мерзимы",
+  mierzisz: "мерзиш",
+  mierzicie: "мерзите",
+  mierziłom: "мерзилом",
+  mierziliśmy: "мерзилисми",
+  mierziłyśmy: "мерзилысми",
+  mierziłeś: "мерзилэсь",
+  mierziłaś: "мерзилась",
+  mierziłoś: "мерзилось",
+  mierziliście: "мерзилисте",
+  mierziłyście: "мерзилысте",
+  mierziłbym: "мерзилбым",
+  mierziłabym: "мерзилабым",
+  mierziłobym: "мерзилобым",
+  mierzilibyśmy: "мерзилибысми",
+  mierziłybyśmy: "мерзилыбысми",
+  mierziłbyś: "мерзилбысь",
+  mierziłabyś: "мерзилабысь",
+  mierziłobyś: "мерзилобысь",
+  mierzilibyście: "мерзилибысте",
+  mierziłybyście: "мерзилыбысте",
+  mierziłby: "мерзилбы",
+  mierziłaby: "мерзилабы",
+  mierziłoby: "мерзилобы",
+  mierziliby: "мерзилибы",
+  mierziłyby: "мерзилыбы",
 };
 
 const EXCEPTIONS_UA = {
@@ -66,8 +147,7 @@ const EXCEPTIONS_UA = {
   dialekt: "діалєкт",
   diametr: "діаметр",
   diaspora: "діаспора",
-  zamarzać: "замарзать",
-  mierzić: "мєрзіть",
+  
   murzasichle: "мурзасіхлє",
   erzac: "ерзац",
   tarzan: "тарзан",
@@ -76,7 +156,7 @@ const EXCEPTIONS_UA = {
   // mafii: "мафії", // мафіи, мафйи
   // mafij: "мафій",
   // mafie: "мафіє", // мафіе, мафйе
-  // mafiom: "мафіом",   // мафіом, мафйом
+  // mafiom: "мафіом", // мафіом, мафйом
   // mafię: "мафіѩ", // мафіѧ, мафйѧ
   // mafią: "мафіѭ", // мафіѫ, мафйѫ
   // mafiami: "мафіямі", // мафіамі, мафйамі
@@ -94,6 +174,89 @@ const EXCEPTIONS_UA = {
   diabłami: "диябламі", // діа-
   diable: "дияблє", // діа-
   diabłach: "дияблах", // діа-
+
+  zamarzać: "замарзать",
+  zamarzam: "замарзам",
+  zamarzamy: "замарзами",
+  zamarzasz: "замарзаш",
+  zamarzacie: "замарзатє",
+  zamarza: "замарза",
+  zamarzają: "замарзаѭ",
+  zamarzałem: "замарзалем",
+  zamarzał: "замарзал",
+  zamarzałam: "замарзалам",
+  zamarzała: "замарзала",
+  zamarzałom: "замарзалом",
+  zamarzało: "замарзало",
+  zamarzaliśmy: "замарзалісмі",
+  zamarzali: "замарзалі",
+  zamarzałyśmy: "замарзалисмі",
+  zamarzały: "замарзали",
+  zamarzałeś: "замарзалесь",
+  zamarzałaś: "замарзалась",
+  zamarzałoś: "замарзалось",
+  zamarzaliście: "замарзалістє",
+  zamarzałyście: "замарзалистє",
+  zamarzano: "замарзано",
+  zamarzałbym: "замарзалбим",
+  zamarzałabym: "замарзалабим",
+  zamarzałobym: "замарзалобим",
+  zamarzalibyśmy: "замарзалібисмі",
+  zamarzałybyśmy: "замарзалибисмі",
+  zamarzałbyś: "замарзалбись",
+  zamarzałabyś: "замарзалабись",
+  zamarzałobyś: "замарзалобись",
+  zamarzalibyście: "замарзалібистє",
+  zamarzałybyście: "замарзалибистє",
+  zamarzałby: "замарзалби",
+  zamarzałaby: "замарзалаби",
+  zamarzałoby: "замарзалоби",
+  zamarzaliby: "замарзаліби",
+  zamarzałyby: "замарзалиби",
+  zamarzajmy: "замарзайми",
+  zamarzaj: "замарзай",
+  zamarzajcie: "замарзайтє",
+  zamarzający: "замарзаѭці",
+  zamarzająca: "замарзаѭца",
+  zamarzające: "замарзаѭцє",
+  zamarzając: "замарзаѭц",
+  zamarzanie: "замарзанє",
+
+  mierzić: "мєрзіть",
+  mierziły: "мєрзіли",
+  mierzili: "мєрзілі",
+  mierziło: "мєрзіло",
+  mierziła: "мєрзіла",
+  mierziłam: "мєрзілам",
+  mierził: "мєрзіл",
+  mierziłem: "мєрзілем",
+  mierzi: "мєрзі",
+  mierzimy: "мєрзіми",
+  mierzisz: "мєрзіш",
+  mierzicie: "мєрзітє",
+  mierziłom: "мєрзілом",
+  mierziliśmy: "мєрзілісмі",
+  mierziłyśmy: "мєрзілисмі",
+  mierziłeś: "мєрзілесь",
+  mierziłaś: "мєрзілась",
+  mierziłoś: "мєрзілось",
+  mierziliście: "мєрзілістє",
+  mierziłyście: "мєрзілистє",
+  mierziłbym: "мєрзілбим",
+  mierziłabym: "мєрзілабим",
+  mierziłobym: "мєрзілобим",
+  mierzilibyśmy: "мєрзілібисмі",
+  mierziłybyśmy: "мєрзілибисмі",
+  mierziłbyś: "мєрзілбись",
+  mierziłabyś: "мєрзілабись",
+  mierziłobyś: "мєрзілобись",
+  mierzilibyście: "мєрзілібистє",
+  mierziłybyście: "мєрзілибистє",
+  mierziłby: "мєрзілби",
+  mierziłaby: "мєрзілаби",
+  mierziłoby: "мєрзілоби",
+  mierziliby: "мєрзіліби",
+  mierziłyby: "мєрзілиби",
 };
 
 const vowelMappingsHardRussian = {a:"а", e:"э", i:"и", y:"ы", o:"о", ó:"у̊", u:"у", ą:"ѫ", ę:"ѧ"
