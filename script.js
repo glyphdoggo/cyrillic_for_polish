@@ -175,7 +175,7 @@ const EXCEPTIONS_UA = {
   diable: "дияблє", // діа-
   diabłach: "дияблах", // діа-
 
-  zamarzać: "teste",
+  zamarzać: "замарзать",
   zamarzam: "замарзам",
   zamarzamy: "замарзами",
   zamarzasz: "замарзаш",
