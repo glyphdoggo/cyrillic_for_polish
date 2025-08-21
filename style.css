@@ -1,45 +1,48 @@
-    <style>
-      html,
-      body {
-        margin: 0;
-        line-height: 1.5;
-        text-align: center;
-        background-color: #333333;
-        color: #dddddd;
-        height: 100%;
-        font-size: 18px;
-        font-family: sans-serif;
-      }
-      textarea,
-      input {
-        font-family: sans-serif;
-        background-color: #dddddd;
-        width: 66.666%;
-        padding: 18px;
-      }
-      input[type="radio"] {  
-        margin: -100px;
-      }
-      .box {
-        display: flex;
-        flex-flow: column;
-        height: 100%;
-      }
-      .box .row {
-        border: 1px dashed #FF0000;
-      }
-      .box .row.header {
-        flex: 1 0 auto;
-      }
-      .box .row.footer {
-        flex: 3 0 auto;
-      }
-      .box .row.buttons {
-        flex: 3 0 auto;
-        text-align: left;
-        width: 100%;
-        /*font-family: monospace;*/
-        align-self: center;
-        align-content: center;
-      }
-    </style>
+body {
+    margin: 0;
+    line-height: 1.5;
+    text-align: center;
+    background-color: #333333;
+    color: #dddddd;
+    height: 100%;
+    font-size: 18px;
+    font-family: sans-serif;
+}
+
+textarea, input {
+    font-family: sans-serif;
+    background-color: #dddddd;
+    width: 66.666%;
+    padding: 18px;
+}
+
+input[type="radio"] {  
+    margin: -100px;
+}
+
+.box {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+.box .row {
+    border: 1px dashed #FF0000;
+}
+
+.box .row.header {
+    flex: 1 0 auto;
+}
+
+.box .row.footer {
+    flex: 3 0 auto;
+}
+
+.box .row.buttons {
+    flex: 3 0 auto;
+    text-align: left;
+    width: 100%;
+    /*font-family: monospace;*/
+    align-self: center;
+    align-content: center;
+}
