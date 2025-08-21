@@ -41,7 +41,7 @@ input[type="radio"] {
 
 .box .row.buttons {
     flex: 3 0 auto;
-    text-align: left;
+    /*text-align: left;*/
     width: 100%;
     /*font-family: monospace;*/
     align-self: center;
