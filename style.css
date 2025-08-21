@@ -38,12 +38,3 @@ input[type="radio"] {
 .box .row.footer {
     flex: 3 0 auto;
 }
-
-.box .row.buttons {
-    flex: 3 0 auto;
-    /*text-align: left;*/
-    width: 100%;
-    /*font-family: monospace;*/
-    align-self: center;
-    align-content: center;
-}
