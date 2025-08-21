@@ -28,7 +28,7 @@ input[type="radio"] {
 }
 
 .box .row {
-    border: 1px dashed #00FF00;
+    /*border: 1px dashed #00FF00;*/
 }
 
 .box .row.header {
