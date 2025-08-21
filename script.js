@@ -7,6 +7,7 @@ const EXCEPTIONS_RU = {
   ariel: "ариэль",
   diament: "диамент",
   diabeł: "диабел",
+  diabły: "диаблы",
   dialekt: "диалект",
   diametr: "диаметр",
   diaspora: "диаспора",
@@ -20,7 +21,8 @@ const EXCEPTIONS_UA = {
   diesel: "дизель",
   ariel: "аріель",
   diament: "діамент",
-  diabeł: "диябел",
+  diabeł: "діабел", // диябел?
+  diabły: "діабли", // дияблы?
   dialekt: "діалект",
   diametr: "діаметр",
   diaspora: "діаспора",
