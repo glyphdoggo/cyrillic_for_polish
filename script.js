@@ -24,8 +24,23 @@ const EXCEPTIONS_RU = {
   mafiach: "мафиях",  // мафиах, мафйах
   mafio: "мафиё", // мафио, мафйо
 
-  magia: "магия",
-  mania: "мания",
+  magia: "магия", // магиа, магйа
+  magie: "магие", // магиэ, магйэ
+  magiom: "магиём",   // магиом, магйом
+  magię: "магиѩ", // магиѧ, магйѧ
+  magią: "магиѭ", // магиѫ, магйѫ
+  magiami: "магиями", // магиами, магйами
+  magiach: "магиях",  // магиах, магйах
+  magio: "магиё", // магио, магйо
+
+  mania: "мания", // маниа, манйа
+  manie: "мание", // маниэ, манйэ
+  maniom: "маниём",   // маниом, манйом
+  manię: "маниѩ", // маниѧ, манйѧ
+  manią: "маниѭ", // маниѫ, манйѫ
+  maniami: "маниями", // маниами, манйами
+  maniach: "маниях",  // маниах, манйах
+  manio: "маниё", // манио, манйо
 
   diabeł: "диабэл",
   diabły: "диаблы",
@@ -67,7 +82,7 @@ const EXCEPTIONS_UA = {
   // mafiami: "мафіямі", // мафіамі, мафйамі
   // mafiach: "мафіях",  // мафіах, мафйах
   // mafio: "мафіо", // мафіо, мафйо
-
+  
   diabeł: "диябел", // діа-
   diabły: "диябли", // діа-
   diabli: "дияблі", // діа-
@@ -272,5 +287,5 @@ function transliterateWord(word, cfg) {
   return result;
 }
 document.querySelectorAll('input[name="orthography"]').forEach(r => {
-  r.addEventListener('change', transcribe);
+  .addEventListener('change', transcribe);
 });
