@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Polish Cyrillization Tool</title>
 
@@ -14,7 +14,7 @@
       <div class="row header">
         <h2>
           <!-- Polish (Latin) Alphabet to Cyrillic Transliteration Tool -->
-          POLISH CYRILLIZATION TOOL<br />
+          POLISH CYRILLIZATION TOOL<br>
           <!-- POLISH CYRILLIC TRANSCRIBER -->
         </h2>
         <h3>
@@ -34,12 +34,7 @@
           <!-- <br />Wpisz lub wklej poniżej tekst w języku polskim: -->
         </p>
 
-        <textarea
-          rows="5"
-          id="input"
-          placeholder="W Szczebrzeszynie chrząszcz brzmi w trzcinie..."
-          oninput="transcribe()"
-        ></textarea>
+        <textarea rows="5" id="input" placeholder="W Szczebrzeszynie chrząszcz brzmi w trzcinie..." oninput="transcribe()"></textarea>
           <!-- placeholder="e.g., sprawdzanie, źródło, śmiałość, szczęście..." -->
           <!-- W Szczebrzeszynie chrząszcz brzmi w trzcinie. -->
       </div>
@@ -50,15 +45,17 @@
           <!-- <br />Wynik: -->
         </p>
 
-        <textarea
-          rows="5"
-          class="output"
-          id="output"
-        ></textarea>
+        <textarea rows="5" class="output" id="output"></textarea>
           <!-- readonly -->
       </div>
-      <input type="radio" name="orthography" value="russian" checked="">Russian-style orthography
-      <input type="radio" name="orthography" value="ukrainian">Ukrainian-style orthography
+      <div class="row header">
+        <input type="radio" name="orthography" value="russian" checked="">
+        Russian-style orthography
+      </div>
+      <div class="row header">
+        <input type="radio" name="orthography" value="ukrainian">
+        Ukrainian-style orthography
+      </div>
       <div class="row footer"></div>
       <script src="script.js"></script>
     </div>
