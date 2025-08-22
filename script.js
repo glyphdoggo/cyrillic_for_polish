@@ -134,6 +134,15 @@ const EXCEPTIONS_RU = {
   mierziłoby: "мерзилобы",
   mierziliby: "мерзилибы",
   mierziłyby: "мерзилыбы",
+
+  podziérzgnąć: "поддерьгнѫть",
+  podzygować: "подзыговать",
+  podzamcze: "подзамче",
+  podzbiór: "подзбю̊р",
+  podzespół: "подзэспу̊л",
+  podziemie: "подземе",
+  podziemny: "подземны",
+  podzwrotnikowy: "подзвротниковы",
 };
 
 const EXCEPTIONS_UA = {
@@ -257,6 +266,15 @@ const EXCEPTIONS_UA = {
   mierziłoby: "мєрзілоби",
   mierziliby: "мєрзіліби",
   mierziłyby: "мєрзілиби",
+
+  podziérzgnąć: "поддєрьґнѫть",
+  podzygować: "подзиґовать",
+  podzamcze: "подзамчє",
+  podzbiór: "подзбю̊р",
+  podzespół: "подзеспӧл",
+  podziemie: "подзємє",
+  podziemny: "подзємни",
+  podzwrotnikowy: "подзвротнікови",
 };
 
 const vowelMappingsHardRussian = {a:"а", e:"э", i:"и", y:"ы", o:"о", ó:"у̊", u:"у", ą:"ѫ", ę:"ѧ"
@@ -264,9 +282,9 @@ const vowelMappingsHardRussian = {a:"а", e:"э", i:"и", y:"ы", o:"о", ó:"у
 const vowelMappingsSoftRussian = {a:"я", e:"е", i:"и", y:"и", o:"ё", ó:"ю̊", u:"ю", ą:"ѭ", ę:"ѩ"
 };
 
-const vowelMappingsHardUkrainian = {a:"а", e:"е", i:"і", y:"и", o:"о", ó:"ӧ", u:"у", ą:"ѫ", ę:"ѧ"
+const vowelMappingsHardUkrainian = {a:"а", ą:"ѫ", e:"е", ę:"ѧ", i:"і", y:"и", o:"о", ó:"ӧ", u:"у"
 };
-const vowelMappingsSoftUkrainian = {a:"я", e:"є", i:"і", y:"і", o:"ьо", ó:"ьӧ", u:"ю", ą:"ѭ", ę:"ѩ"
+const vowelMappingsSoftUkrainian = {a:"я", ą:"ѭ", e:"є", ę:"ѩ", i:"і", y:"і", o:"ьо", ó:"ьӧ", u:"ю"
 };
 
 const consonantMappingsRussian = {
@@ -283,8 +301,8 @@ const consonantMappingsUkrainian = {
   ch:"х", cz:"ч", dz:"ѕ", dź:"д", rz:"р", sz:"ш",
   śl:"сл", śm:"см", śn:"сн", śr:"ср", św:"св", źdź:"зд", źr:"зр",
   szcz:"щ",
-  ia:"я", ią:"ѭ", ie:"є", ię:"ѩ", ii:"ї", io:"ьо", ió:"ю̊", iu:"ю",
-  ja:"я", ją:"ѭ", je:"є", ję:"ѩ", ji:"і", jo:"ьо", jó:"ю̊", ju:"ю"
+  ia:"я", ią:"ѭ", ie:"є", ię:"ѩ", ii:"ї", io:"ьо", ió:"ьӧ", iu:"ю",
+  ja:"я", ją:"ѭ", je:"є", ję:"ѩ", ji:"і", jo:"ьо", jó:"ьӧ", ju:"ю"
 };
 
 const palatalizingConsonants = ["dź","l","rz","ć","ń","ś","śl","śm","śn","śr","św","ź","źdź","źr"];
