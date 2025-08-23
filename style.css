@@ -7,12 +7,11 @@ html, body {
     font-size: 18px;
     font-family: sans-serif;
     align-content: center;
-    align-self: center;
 }
 
 textarea {
     font-family: sans-serif;
     background-color: #dddddd;
-    width: 66.666%;
+    width: 65%;
     padding: 18px;
 }
