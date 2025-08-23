@@ -9,40 +9,17 @@ html, body, #interface {
     font-family: sans-serif;
 }
 
-textarea, input {
+textarea {
     font-family: sans-serif;
     background-color: #dddddd;
     width: 66.666%;
     padding: 18px;
 }
 
-input[type="radio"] {  
-    margin: -30%;
-}
-
-#interface, #main, #message {
+#interface, #main {
     display: flex; /* Flex container */
-    flex-flow: column;
     height: 100%;
-}
-
-#interface, #message {
     flex-direction: column; /* Column layout */
-}
-
-#main, #message {
-  flex: 1; /* Distribute space equally among the flex items */
-  overflow: auto; /* Use scrollbars if necessary */
-}
-
-.box .row {
-    /*border: 1px dashed salmon;*/
-}
-
-.box .row.header {
-    flex: 1 0 auto;
-}
-
-.box .row.footer {
-    flex: 3 0 auto;
+    flex: 1; /* Distribute space equally among the flex items */
+    overflow: auto; /* Use scrollbars if necessary */
 }
