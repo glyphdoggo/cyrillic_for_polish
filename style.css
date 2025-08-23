@@ -32,16 +32,8 @@ textarea {
     flex: 1;
 }
 
-.img1 {
-  border: 1px solid #f00;
-  position: relative;
-  z-index: 2;
-}
-
-.img2 {
-  border: 1px solid #00f;
-  position: relative;
-  z-index: 1;
-  top: -45;
-  left: -45;
+.bigimg {
+  position: absolute;
+  z-index: -1;
+  bottom: 100;
 }
