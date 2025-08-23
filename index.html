@@ -11,23 +11,21 @@
       <div class="title">
         <h2>POLISH CYRILLIZATION TOOL</h2>
       </div>
-      <div class="input">
+      <div class="main">
         <p>Type or paste Polish text below:</p>
         <textarea rows="5" id="input" placeholder="W Szczebrzeszynie chrząszcz brzmi w trzcinie..." oninput="transcribe()"></textarea>
       </div>
-      <div class="output">
+      <div class="buttons">
         <p>Result:</p>
-        <textarea rows="5" class="output" id="output"></textarea>
+        <textarea rows="5" id="output"></textarea>
       </div>
-      <br>
-      <div>
+      <div class="buttons">
         <input type="radio" name="orthography" value="russian" checked="">
         Russian-style orthography
         <input type="radio" name="orthography" value="ukrainian">
         Ukrainian-style orthography
       </div>
-      <br>
-      <div class="icon">
+      <div class="title">
         <img src="https://raw.githubusercontent.com/glyphdoggo/PolCyrTool/refs/heads/main/small_yus_white.svg" height="50">
       </div>
       <script src="script.js"></script>
