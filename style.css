@@ -31,3 +31,17 @@ textarea {
     align-content: center;
     flex: 1;
 }
+
+.img1 {
+  border: 1px solid #f00;
+  position: relative;
+  z-index: 2;
+}
+
+.img2 {
+  border: 1px solid #0f0;
+  position: relative;
+  z-index: 1;
+  top: -45;
+  left: -45;
+}
