@@ -1,12 +1,13 @@
-html, body, #interface {
+html, body {
     margin: 0;
-    /* line-height: 0; */
     text-align: center;
     background-color: #333333;
     color: #dddddd;
     height: 100%;
     font-size: 18px;
     font-family: sans-serif;
+    align-content: center;
+    align-self: center;
 }
 
 textarea {
@@ -14,12 +15,4 @@ textarea {
     background-color: #dddddd;
     width: 66.666%;
     padding: 18px;
-}
-
-#interface, #main {
-    display: flex; /* Flex container */
-    height: 100%;
-    flex-direction: column; /* Column layout */
-    flex: 1; /* Distribute space equally among the flex items */
-    /* overflow: auto; /* Use scrollbars if necessary */
 }
