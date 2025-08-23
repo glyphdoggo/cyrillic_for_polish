@@ -15,3 +15,24 @@ textarea {
     width: 65%;
     padding: 18px;
 }
+
+.interface {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+
+.title {
+    align-content: center;
+    flex: 3;
+}
+
+.main {
+    align-content: center;
+    flex: 2;
+}
+
+.buttons {
+    align-content: center;
+    flex: 1;
+}
