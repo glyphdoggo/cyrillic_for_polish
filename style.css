@@ -22,11 +22,6 @@ textarea {
     flex-direction: column;
 }
 
-.three {
-    align-content: center;
-    flex: 3;
-}
-
 .two {
     align-content: center;
     flex: 2;
