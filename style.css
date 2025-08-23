@@ -1,7 +1,6 @@
-html,
-body {
+html, body, #interface {
     margin: 0;
-    line-height: 1.5;
+    line-height: 0;
     text-align: center;
     background-color: #333333;
     color: #dddddd;
@@ -21,10 +20,19 @@ input[type="radio"] {
     margin: -30%;
 }
 
-.box {
-    display: flex;
+#interface, #main, #message {
+    display: flex; /* Flex container */
     flex-flow: column;
     height: 100%;
+}
+
+#interface, #message {
+    flex-direction: column; /* Column layout */
+}
+
+#main, #message {
+  flex: 1; /* Distribute space equally among the flex items */
+  overflow: auto; /* Use scrollbars if necessary */
 }
 
 .box .row {
