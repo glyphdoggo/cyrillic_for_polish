@@ -1,72 +1,17 @@
-<!DOCTYPE html>
 <html lang="en">
-  <link rel="icon" href="https://raw.githubusercontent.com/glyphdoggo/PolCyrTool/refs/heads/main/small_yus.png">
-  <head>
+  <head><link rel="icon" href="https://raw.githubusercontent.com/glyphdoggo/PolCyrTool/refs/heads/main/small_yus_white.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Polish Cyrillization Tool</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="box">
-      <div class="row footer"></div>
-      <div class="row header"><img src="https://raw.githubusercontent.com/glyphdoggo/PolCyrTool/refs/heads/main/small_yus.png" width="100" height="100">
-        <h2>
-          CYRILLIC FOR POLISH
-          <!-- POLISH CYRILLIC TRANSCRIBER -->
-          <!-- POLISH CYRILLIZATION TOOL -->
-          <!-- A CYRILLIC ORTHOGRAPHY FOR THE POLISH LANGUAGE -->
-          <!-- A TOOL FOR TRANSCRIBING POLISH INTO CYRILLIC -->
-          <!-- POLISH (LATIN) ALPHABET TO CYRILLIC TRANSLITERATION TOOL -->
-        </h2>
-        <h3>
-          <!-- CYRYLICA DLA POLSKIEGO -->
-          <!-- ЦИРЫЛИЦА ДЛЯ ПОЛЬСКЕГО -->
-          <!-- ЦІРИЛІЦА ДЛЯ ПОЛЬСКЄҐО -->
-
-          <!-- TRANSKRYPTOR CYRYLICY POLSKIEJ -->
-          <!-- ТРАНСКРЫПТОР ЦИРЫЛИЦИ ПОЛЬСКЕЙ -->
-          <!-- ТРАНСКРИПТОР ЦІРИЛІЦІ ПОЛЬСКЄЙ -->
-
-          <!-- NARZĘDZIE DO CYRYLIZACJI POLSKIEGO -->
-          <!-- НАРѨДЕ ДО ЦИРЫЛИЗАЦИ ПОЛЬСКЕГО -->
-          <!-- НАРѨДЄ ДО ЦІРИЛІЗАЦІ ПОЛЬСКЄГО -->
-
-          <!-- ORTOGRAFIA CYRYLICKA DLA JĘZYKA POLSKIEGO -->
-          <!-- ОРТОГРАФЯ ЦИРЫЛИЦКА ДЛЯ ѨЗЫКА ПОЛЬСКЕГО -->
-          <!-- ОРТОҐРАФЯ ЦІРИЛІЦКА ДЛЯ ѨЗИКА ПОЛЬСКЄҐО -->
-
-          <!-- NARZĘDZIE DO TRANSKRYPCJI POLSKIEGO NA CYRYLICĘ -->
-          <!-- НАРѨДЕ ДО ТРАНСКРЫПЦИ ПОЛЬСКЕГО НА ЦИРЫЛИЦѦ -->
-          <!-- НАРѨДЄ ДО ТРАНСКРИПЦІ ПОЛЬСКЄҐО НА ЦІРИЛІЦѦ -->
-
-          <!-- NARZĘDZIE DO TRANSLITERACJI ALFABETU POLSKIEGO (ŁACIŃSKIEGO) NA CYRYLICĘ -->
-          <!-- НАРѨДЕ ДО ТРАНСЛИТЭРАЦИ АЛЬФАБЭТУ ПОЛЬСКЕГО (ЛАТИНЬСКЕГО) НА ЦИРЫЛИЦѦ -->
-          <!-- НАРѨДЄ ДО ТРАНСЛІТЕРАЦІ АЛЬФАБЕТУ ПОЛЬСКЄҐО (ЛАТІНЬСКЄҐО) НА ЦІРИЛІЦѦ -->
-        </h3>
-      </div>
-      <div class="row header">
-        <p>Type or paste Polish text below:
-          <!-- <br />Wpisz lub wklej poniżej tekst w języku polskim: -->
-        </p>
-        <textarea rows="5" id="input" placeholder="W Szczebrzeszynie chrząszcz brzmi w trzcinie..." oninput="transcribe()"></textarea>
-      </div>
-      <div class="row header"></div>
-      <div class="row footer">
-        <p>Result:
-          <!-- <br />Wynik: -->
-        </p>
-        <textarea rows="5" class="output" id="output"></textarea>
-      </div>
-      <div class="row header">
-        <input type="radio" name="orthography" value="russian" checked="">
-        Russian-style orthography
-      </div>
-      <div class="row header">
-        <input type="radio" name="orthography" value="ukrainian">
-        Ukrainian-style orthography
-      </div>
-      <div class="row footer"></div>
+    <div class="interface">
+      <div class="icon"><img src="https://raw.githubusercontent.com/glyphdoggo/PolCyrTool/refs/heads/main/small_yus_white.svg" width="100" height="100"></div>
+<div class="title"><h2>POLISH CYRILLIZATION TOOL</h2></div>
+      <div class="input">Type or paste Polish text below:<textarea rows="5" id="input" placeholder="W Szczebrzeszynie chrząszcz brzmi w trzcinie..." oninput="transcribe()"></textarea></div>
+      <div class="output">Result:<textarea rows="5" class="output" id="output"></textarea></div>
+      <div class="buttons"><input type="radio" name="orthography" value="russian" checked="">Russian-style orthography<input type="radio" name="orthography" value="ukrainian">Ukrainian-style orthography</div>
       <script src="script.js"></script>
     </div>
   </body>
