@@ -22,17 +22,17 @@ textarea {
     flex-direction: column;
 }
 
-.title {
+.three {
+    align-content: center;
+    flex: 3;
+}
+
+.two {
     align-content: center;
     flex: 2;
 }
 
-.main {
-    align-content: center;
-    flex: 2;
-}
-
-.buttons {
+.one {
     align-content: center;
     flex: 1;
 }
