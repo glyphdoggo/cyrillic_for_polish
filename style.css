@@ -33,7 +33,8 @@ textarea {
 }
 
 .bigimg {
-  position: absolute;
-  z-index: -1;
-  bottom: 100;
+    position: absolute;
+    left: 1;
+    top: 1;
+    z-index: -1;
 }
