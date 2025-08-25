@@ -616,6 +616,8 @@ const palatalizingConsonants = ["dź","l","rz","ć","ń","ś","śl","śm","śn",
 
 const softVowels = ["ia","ią","ie","ię","io","ió","iu"];
 
+const specialPrevConsonantsRussian = ["c", "cz", "dz", "sz", "szcz", "ż"];
+
 function getSelectedOrthography() {
   const el = document.querySelector('input[name="orthography"]:checked');
   return el ? el.value : "russian";
@@ -748,19 +750,18 @@ function transliterateWord(word, cfg) {
     if (vowelMappingsHard[current]) {
       let mapped;
 
-      if (
-        prevCons &&
-        palatalizingConsonants.includes(prevCons)
-      ) {
+      if (prevCons && palatalizingConsonants.includes(prevCons)) {
         mapped = vowelMappingsSoft[current];
       } else if (
+        orthography === "russian" && // Apply only in Russian mode
         ["e", "i", "y"].includes(current) &&
-        ["c", "cz", "dz", "sz", "szcz", "ż"].includes(prevCons)
-      ) {
+        specialPrevConsonantsRussian.includes(prevCons)
+     ) {
         mapped = vowelMappingsSoft[current];
       } else {
         mapped = vowelMappingsHard[current];
       }
+
       result += matchCase(mapped, originalChar);
       prevCons = "";
       i += 1;
