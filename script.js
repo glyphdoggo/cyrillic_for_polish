@@ -1,21 +1,21 @@
 const EXCEPTIONS_RU = {
   wrocław: "вроцлавь",
-  tiara: "тиара",
-  radio: "радио",
-  dieta: "диета",
-  diesel: "дизэль", // дизель?
-  ariel: "ариэль",
-  diament: "диамент",
-  dialekt: "диалект",
-  diametr: "диаметр",
-  diaspora: "диаспора",
+  // tiara: "тиара",
+  // radio: "радио",
+  // dieta: "диета",
+  // diesel: "дизэль", // дизель?
+  // ariel: "ариэль",
+  // diament: "диамент",
+  // dialekt: "диалект",
+  // diametr: "диаметр",
+  // diaspora: "диаспора",
   murzasichle: "мурзасихле",
   erzac: "эрзац",
   tarzan: "тарзан",
 
-  ośm: "осьм", // осьмь
-  osiem: "осем", // осемь
-  ośmiu: "осьмю", // осмю? осьмью?
+  // ośm: "осьм", // осьмь
+  // osiem: "осем", // осемь
+  // ośmiu: "осьмю", // осмю? осьмью?
 
   mafia: "мафия", // мафиа, мафйа
   mafie: "мафие", // мафиэ, мафйэ
@@ -301,22 +301,22 @@ const EXCEPTIONS_RU = {
 
 const EXCEPTIONS_UA = {
   wrocław: "вроцлавь",
-  tiara: "тіара",
-  radio: "радіо",
-  dieta: "дієта",
-  diesel: "дизель",
-  ariel: "аріель",
-  diament: "діамент",
-  dialekt: "діалєкт",
-  diametr: "діаметр",
-  diaspora: "діаспора",
+  // tiara: "тіара",
+  // radio: "радіо",
+  // dieta: "дієта",
+  // diesel: "дизель",
+  // ariel: "аріель",
+  // diament: "діамент",
+  // dialekt: "діалєкт",
+  // diametr: "діаметр",
+  // diaspora: "діаспора",
   murzasichle: "мурзасіхлє",
   erzac: "ерзац",
   tarzan: "тарзан",
 
-  ośm: "осьм", // осьмь
-  osiem: "осєм", // осємь
-  ośmiu: "осьмю", // осмю? осьмью?
+  // ośm: "осьм", // осьмь
+  // osiem: "осєм", // осємь
+  // ośmiu: "осьмю", // осмю? осьмью?
 
   // mafia: "мафія", // мафіа, мафйа
   // mafii: "мафії", // мафіи, мафйи
@@ -328,7 +328,7 @@ const EXCEPTIONS_UA = {
   // mafiami: "мафіямі", // мафіамі, мафйамі
   // mafiach: "мафіях",  // мафіах, мафйах
   // mafio: "мафіо", // мафіо, мафйо
-  
+
   diabeł: "диябел", // діа-
   diabły: "диябли", // діа-
   diabli: "дияблі", // діа-
@@ -382,9 +382,9 @@ const EXCEPTIONS_UA = {
   zamarzajmy: "замарзайми",
   zamarzaj: "замарзай",
   zamarzajcie: "замарзайтє",
-  zamarzający: "замарзаѭці",
+  zamarzający: "замарзаѭци",
   zamarzająca: "замарзаѭца",
-  zamarzające: "замарзаѭцє",
+  zamarzające: "замарзаѭце",
   zamarzając: "замарзаѭц",
   zamarzanie: "замарзанє",
 
@@ -424,12 +424,12 @@ const EXCEPTIONS_UA = {
   mierziliby: "мєрзіліби",
   mierziłyby: "мєрзілиби",
 
-  podzamcze: "подзамчє",
+  podzamcze: "подзамче",
   podzamcza: "подзамча",
-  podzamczy: "подзамчі",
+  podzamczy: "подзамчи",
   podzamczu: "подзамчу",
   podzamczom: "подзамчом",
-  podzamczem: "подзамчєм",
+  podzamczem: "подзамчем",
   podzamczami: "подзамчамі",
   podzamczach: "подзамчах",
 
@@ -443,7 +443,7 @@ const EXCEPTIONS_UA = {
   podzbiorami: "подзбьорамі",
   podzbiorze: "подзбьорє",
   podzbiorach: "подзбьорах",
-  
+
   podzespół: "подзеспӧл",
   podzespoły: "подзесполи",
   podzespołu: "подзесполу",
@@ -454,7 +454,7 @@ const EXCEPTIONS_UA = {
   podzespołami: "подзесполамі",
   podzespole: "подзесполє",
   podzespołach: "подзесполах",
-  
+
   podziemie: "подзємє",
   podziemia: "подзємя",
   podziemi: "подзємі",
@@ -463,7 +463,7 @@ const EXCEPTIONS_UA = {
   podziemiem: "подзємєм",
   podziemiami: "подзємямі",
   podziemiach: "подзємях",
-  
+
   podziemny: "подзємни",
   podziemna: "подзємна",
   podziemne: "подзємне",
@@ -475,7 +475,7 @@ const EXCEPTIONS_UA = {
   podziemnym: "подзємним",
   podziemną: "подзємнѫ",
   podziemnymi: "подзємнимі",
-  
+
   podzwrotnikowy: "подзвротнікови",
   podzwrotnikowa: "подзвротнікова",
   podzwrotnikowe: "подзвротнікове",
@@ -487,7 +487,7 @@ const EXCEPTIONS_UA = {
   podzwrotnikowym: "подзвротніковим",
   podzwrotnikową: "подзвротніковѫ",
   podzwrotnikowymi: "подзвротніковимі",
-  
+
   podziérzgnąć: "поддєрьґнѫть",
   podziérzgnę: "поддєрьґнѧ",
   podziérzgniemy: "поддєрьґнєми",
@@ -529,9 +529,9 @@ const EXCEPTIONS_UA = {
   podziérzgnijmy: "поддєрьґнійми",
   podziérzgnij: "поддєрьґній",
   podziérzgnijcie: "поддєрьґнійтє",
-  podziérzgnąwszy: "поддєрьґнѫвші",
+  podziérzgnąwszy: "поддєрьґнѫвши",
   podziérzgnięcie: "поддєрьґнѩтє",
-  
+
   podzygować: "подзиґовать",
   podzyguję: "подзиґуѩ",
   podzygujemy: "подзиґуєми",
@@ -573,9 +573,9 @@ const EXCEPTIONS_UA = {
   podzygujmy: "подзиґуйми",
   podzyguj: "подзиґуй",
   podzygujcie: "подзиґуйтє",
-  podzygujący: "подзиґуѭці",
+  podzygujący: "подзиґуѭци",
   podzygująca: "подзиґуѭца",
-  podzygujące: "подзиґуѭцє",
+  podzygujące: "подзиґуѭце",
   podzygowany: "подзиґовани",
   podzygowana: "подзиґована",
   podzygowane: "подзиґоване",
@@ -597,7 +597,7 @@ const vowelMappingsSoftUkrainian = {a:"я", ą:"ѭ", e:"є", ę:"ѩ", i:"і", y:
 const consonantMappingsRussian = {
   b:"б", c:"ц", ć:"т", d:"д", f:"ф", g:"г", h:"х", j:"й", k:"к", l:"л", ł:"л", m:"м", n:"н", ń:"н", p:"п", q:"к", r:"р", s:"с", ś:"с", t:"т", v:"в", w:"в", x:"кс", z:"з", ź:"з", ż:"ж",
   ch:"х", cz:"ч", dz:"ѕ", dź:"д", rz:"р", sz:"ш",
-  śl:"сл", śm:"см", śn:"сн", śr:"ср", św:"св", źdź:"зд", źr:"зр", śmy:"сьмы",
+  ph:"ф",
   szcz:"щ",
   ia:"я", ią:"ѭ", ie:"е", ię:"ѩ", io:"ё", ió:"ю̊", iu:"ю",
   ja:"я", ją:"ѭ", je:"е", ję:"ѩ", ji:"и", jo:"ё", jó:"ю̊", ju:"ю"
@@ -606,13 +606,13 @@ const consonantMappingsRussian = {
 const consonantMappingsUkrainian = {
   b:"б", c:"ц", ć:"т", d:"д", f:"ф", g:"ґ", h:"г", j:"й", k:"к", l:"л", ł:"л", m:"м", n:"н", ń:"н", p:"п", q:"к", r:"р", s:"с", ś:"с", t:"т", v:"в", w:"в", x:"кс", z:"з", ź:"з", ż:"ж",
   ch:"х", cz:"ч", dz:"ѕ", dź:"д", rz:"р", sz:"ш",
-  śl:"сл", śm:"см", śn:"сн", śr:"ср", św:"св", źdź:"зд", źr:"зр", śmy:"сьми",
+  ph:"ф",
   szcz:"щ",
   ia:"я", ią:"ѭ", ie:"є", ię:"ѩ", ii:"ї", io:"ьо", ió:"ьӧ", iu:"ю",
   ja:"я", ją:"ѭ", je:"є", ję:"ѩ", ji:"і", jo:"ьо", jó:"ьӧ", ju:"ю"
 };
 
-const palatalizingConsonants = ["dź","l","rz","ć","ń","ś","śl","śm","śn","śr","św","ź","źdź","źr"];
+const palatalizingConsonants = ["dź","l","rz","ć","ń","ś","ź"];
 
 const softVowels = ["ia","ią","ie","ię","io","ió","iu"];
 
@@ -625,6 +625,8 @@ function getSelectedOrthography() {
 
 function transcribe() {
   const orth = getSelectedOrthography();
+  const isRussian = orth === "russian";
+  const specialPrevConsonantsRussian = ["c", "cz", "dz", "sz", "szcz", "ż"];
 
   const vowelMappingsHard = (orth === "russian") ? vowelMappingsHardRussian : vowelMappingsHardUkrainian;
   const vowelMappingsSoft = (orth === "russian") ? vowelMappingsSoftRussian : vowelMappingsSoftUkrainian;
@@ -655,7 +657,9 @@ function transcribe() {
           vowelMappingsSoft,
           consonantMappings,
           palatalizingConsonants,
-          nonSoftSignFollowers
+          nonSoftSignFollowers,
+          isRussian,
+          specialPrevConsonants: specialPrevConsonantsRussian
         });
       }
     } else {
@@ -685,7 +689,9 @@ function transliterateWord(word, cfg) {
     vowelMappingsSoft,
     consonantMappings,
     palatalizingConsonants,
-    nonSoftSignFollowers
+    nonSoftSignFollowers,
+    isRussian,
+    specialPrevConsonants
   } = cfg;
 
   let result = "";
@@ -710,22 +716,49 @@ function transliterateWord(word, cfg) {
           mapped = "т";
         } else if (chunk === "dz" && nextChar === "i") {
           mapped = "д";
-        // } else if (chunk === "d" && softVowels.includes(nextTwo)) {
-        //   mapped = (orth === "russian") ? "ди" : "ді";
-        // } else if (chunk === "t" && softVowels.includes(nextTwo)) {
-        //   mapped = (orth === "russian") ? "ти" : "ті";
-        // } else if (chunk === "r" && softVowels.includes(nextTwo)) {
-        //   mapped = (orth === "russian") ? "ри" : "рі";
-        } else if (chunk === "dź" && nextTwo === "ci") {
-          mapped = "дь";
-        } else if (chunk === "rz" && nextTwo === "ci") {
-          mapped = "рь";
+
+        } else if (chunk === "d" && softVowels.includes(nextTwo)) {
+          mapped = (isRussian) ? "ды" : "ди"; // ди/ді?
+        } else if (chunk === "t" && softVowels.includes(nextTwo)) {
+          mapped = (isRussian) ? "ты" : "ти"; // ти/ті?
+        } else if (chunk === "r" && softVowels.includes(nextTwo)) {
+          mapped = (isRussian) ? "ры" : "ри"; // ри/рі?
+
         } else {
           mapped = consonantMappings[chunk];
         }
 
-        if (palatalizingConsonants.includes(chunk)) {
-          if (!nonSoftSignFollowers.has(nextChar) && nextTwo !== "ci" && nextThree !== "dzi") {
+        // Palatalization logic for ś, ź in clusters... and more ь insertion
+        if (chunk === "ś" || chunk === "ź") {
+          // Check if we should skip adding ь
+          const nextIsSoftVowel = ["i","j"].includes(nextChar);
+          const nextFollowedBySoft = (nextTwo.length === 2 && ["i","j"].includes(nextTwo[1]));
+
+          // Check for special (soft) clusters after ś/ź: dź, dzi, rz
+          let nextClusterIsSoft = false;
+          if (nextTwo.startsWith("d") || nextTwo.startsWith("r")) {
+            const nextCluster = word.slice(i + length, i + length + 3).toLowerCase();
+            if (
+              nextCluster.startsWith("dź") ||
+              nextCluster.startsWith("dzi")  ||
+              nextCluster.startsWith("rz")
+            ) {
+              nextClusterIsSoft = true;
+            }
+          }
+
+          if (
+            nextChar && // there is a next character
+            !["i","j"].includes(nextChar) && // next char is not a soft vowel
+            !nonSoftSignFollowers.has(nextChar) && // and it's not in non-soft followers
+            !(nextTwo.length === 2 && ["i","j"].includes(nextTwo[1])) && // next consonant followed by i/j
+            !nextClusterIsSoft // not part of a soft cluster
+          ) {
+            mapped += "ь";
+          }
+        } else if (palatalizingConsonants.includes(chunk)) {
+          // Normal palatalization logic
+          if (!nonSoftSignFollowers.has(nextChar)) {
             mapped += "ь";
           }
         }
@@ -756,13 +789,15 @@ function transliterateWord(word, cfg) {
       ) {
         mapped = vowelMappingsSoft[current];
       } else if (
+        isRussian &&  // apply this only in Russian mode
         ["e", "i", "y"].includes(current) &&
-        ["c", "cz", "dz", "sz", "szcz", "ż"].includes(prevCons)
+        specialPrevConsonants.includes(prevCons)
       ) {
         mapped = vowelMappingsSoft[current];
       } else {
         mapped = vowelMappingsHard[current];
       }
+
       result += matchCase(mapped, originalChar);
       prevCons = "";
       i += 1;
