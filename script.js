@@ -752,12 +752,10 @@ function transliterateWord(word, cfg) {
 
       if (prevCons && palatalizingConsonants.includes(prevCons)) {
         mapped = vowelMappingsSoft[current];
-      } else if (
-        orthography === "russian" && // Apply only in Russian mode
-        ["e", "i", "y"].includes(current) &&
-        specialPrevConsonantsRussian.includes(prevCons)
-     ) {
-        mapped = vowelMappingsSoft[current];
+//      } else if (orthography === "russian" && // Apply only in Russian mode
+//        ["e", "i", "y"].includes(current) &&
+//        specialPrevConsonantsRussian.includes(prevCons)) {
+//        mapped = vowelMappingsSoft[current];
       } else {
         mapped = vowelMappingsHard[current];
       }
