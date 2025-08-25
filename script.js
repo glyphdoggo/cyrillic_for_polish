@@ -597,6 +597,7 @@ const vowelMappingsSoftUkrainian = {a:"я", ą:"ѭ", e:"є", ę:"ѩ", i:"і", y:
 const consonantMappingsRussian = {
   b:"б", c:"ц", ć:"т", d:"д", f:"ф", g:"г", h:"х", j:"й", k:"к", l:"л", ł:"л", m:"м", n:"н", ń:"н", p:"п", q:"к", r:"р", s:"с", ś:"с", t:"т", v:"в", w:"в", x:"кс", z:"з", ź:"з", ż:"ж",
   ch:"х", cz:"ч", dz:"ѕ", dź:"д", rz:"р", sz:"ш",
+  śr:"ср", źr:"зр",
   ph:"ф",
   szcz:"щ",
   ia:"я", ią:"ѭ", ie:"е", ię:"ѩ", io:"ё", ió:"ю̊", iu:"ю",
@@ -606,13 +607,14 @@ const consonantMappingsRussian = {
 const consonantMappingsUkrainian = {
   b:"б", c:"ц", ć:"т", d:"д", f:"ф", g:"ґ", h:"г", j:"й", k:"к", l:"л", ł:"л", m:"м", n:"н", ń:"н", p:"п", q:"к", r:"р", s:"с", ś:"с", t:"т", v:"в", w:"в", x:"кс", z:"з", ź:"з", ż:"ж",
   ch:"х", cz:"ч", dz:"ѕ", dź:"д", rz:"р", sz:"ш",
+  śr:"ср", źr:"зр",
   ph:"ф",
   szcz:"щ",
   ia:"я", ią:"ѭ", ie:"є", ię:"ѩ", ii:"ї", io:"ьо", ió:"ьӧ", iu:"ю",
   ja:"я", ją:"ѭ", je:"є", ję:"ѩ", ji:"і", jo:"ьо", jó:"ьӧ", ju:"ю"
 };
 
-const palatalizingConsonants = ["dź","l","rz","ć","ń","ś","ź"];
+const palatalizingConsonants = ["dź","l","rz","ć","ń","ś","ź","śr","źr"];
 
 const softVowels = ["ia","ią","ie","ię","io","ió","iu"];
 
