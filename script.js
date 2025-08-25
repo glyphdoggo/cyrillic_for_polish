@@ -750,16 +750,19 @@ function transliterateWord(word, cfg) {
     if (vowelMappingsHard[current]) {
       let mapped;
 
-      if (prevCons && palatalizingConsonants.includes(prevCons)) {
+      if (
+        prevCons &&
+        palatalizingConsonants.includes(prevCons)
+      ) {
         mapped = vowelMappingsSoft[current];
-//      } else if (orthography === "russian" && // Apply only in Russian mode
-//        ["e", "i", "y"].includes(current) &&
-//        specialPrevConsonantsRussian.includes(prevCons)) {
-//        mapped = vowelMappingsSoft[current];
+      } else if (
+        ["e", "i", "y"].includes(current) &&
+        ["c", "cz", "dz", "sz", "szcz", "ż"].includes(prevCons)
+      ) {
+        mapped = vowelMappingsSoft[current];
       } else {
         mapped = vowelMappingsHard[current];
       }
-
       result += matchCase(mapped, originalChar);
       prevCons = "";
       i += 1;
