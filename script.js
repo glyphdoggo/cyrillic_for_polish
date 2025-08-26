@@ -1,5 +1,4 @@
 const EXCEPTIONS_RU = {
-  wrocław: "вроцлавь",
   // tiara: "тиара",
   // radio: "радио",
   // dieta: "диета",
@@ -300,7 +299,6 @@ const EXCEPTIONS_RU = {
 };
 
 const EXCEPTIONS_UA = {
-  wrocław: "вроцлавь",
   // tiara: "тіара",
   // radio: "радіо",
   // dieta: "дієта",
@@ -618,7 +616,17 @@ const palatalizingConsonants = ["dź","l","rz","ć","ń","ś","ź","śr","źr"];
 
 const softVowels = ["ia","ią","ie","ię","io","ió","iu"];
 
-const specialPrevConsonantsRussian = ["c", "cz", "dz", "sz", "szcz", "ż"];
+const specialPrevConsonants = ["c", "cz", "dz", "sz", "szcz", "ż"];
+
+// List of dictionary forms that require a final ь
+const addSoftSignWords = new Set([
+  "brew", "brzoskiew", "bukiew", "cerkiew", "chorągiew", "cietrzew", "czerw", "jątrew", "kotew", "krew", "marchew", "mątew", "nów", "nów", "rzodkiew", "wiećw", "wrocław", "zełw", "żełw", "żółw",
+  "drób", "gołąb", "głąb", "kiełb", "źreb",
+  "bluszcz", "dreszcz",
+  "czarnoziem", "osiem", "siedem", "ziem",
+  "konop",
+  "brocz", "cyc", "kokosz", "mysz", "młodzież", "plesz", "pustosz", "rozkosz", "wesz", "łeż", "łącz", // not sure about these
+]);
 
 function getSelectedOrthography() {
   const el = document.querySelector('input[name="orthography"]:checked');
@@ -628,7 +636,6 @@ function getSelectedOrthography() {
 function transcribe() {
   const orth = getSelectedOrthography();
   const isRussian = orth === "russian";
-  const specialPrevConsonantsRussian = ["c", "cz", "dz", "sz", "szcz", "ż"];
 
   const vowelMappingsHard = (orth === "russian") ? vowelMappingsHardRussian : vowelMappingsHardUkrainian;
   const vowelMappingsSoft = (orth === "russian") ? vowelMappingsSoftRussian : vowelMappingsSoftUkrainian;
@@ -661,7 +668,7 @@ function transcribe() {
           palatalizingConsonants,
           nonSoftSignFollowers,
           isRussian,
-          specialPrevConsonants: specialPrevConsonantsRussian
+          specialPrevConsonants
         });
       }
     } else {
@@ -810,6 +817,11 @@ function transliterateWord(word, cfg) {
     prevCons = "";
     i += 1;
   }
+
+  // Add final soft sign
+  if (addSoftSignWords.has(word.toLowerCase())) {
+    result += "ь";
+  } 
 
   return result;
 }
