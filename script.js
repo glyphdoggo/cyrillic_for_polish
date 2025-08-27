@@ -592,7 +592,7 @@ const vowelMappingsSoftRussian = {a:"я", e:"е", i:"и", y:"и", o:"ё", ó:"ю
 const vowelMappingsHardUkrainian = {a:"а", ą:"ѫ", e:"е", ę:"ѧ", i:"і", y:"и", o:"о", ó:"о́", // ó:"ӧ",
                                     u:"у"
 };
-const vowelMappingsSoftUkrainian = {a:"я", ą:"ѭ", e:"є", ę:"ѩ", i:"і", y:"і", o:"ьо", ó:"ьо́" // ó:"ьӧ",
+const vowelMappingsSoftUkrainian = {a:"я", ą:"ѭ", e:"є", ę:"ѩ", i:"і", y:"і", o:"ьо", ó:"ьо́", // ó:"ьӧ",
                                     u:"ю"
 };
 
@@ -603,7 +603,7 @@ const consonantMappingsRussian = {
   ph:"ф",
   szcz:"щ",
   ia:"я", ią:"ѭ", ie:"е", ię:"ѩ", io:"ё", iu:"ю", ió:"ю́", // ió:"ю̊",
-  ja:"я", ją:"ѭ", je:"е", ję:"ѩ", ji:"и", jo:"ё", ju:"ю", jó:"ю́" // jó:"ю̊",
+  ja:"я", ją:"ѭ", je:"е", ję:"ѩ", ji:"и", jo:"ё", ju:"ю", jó:"ю́", // jó:"ю̊",
 };
 
 const consonantMappingsUkrainian = {
