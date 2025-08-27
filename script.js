@@ -1,20 +1,8 @@
 const EXCEPTIONS_RU = {
-  // tiara: "тиара",
-  // radio: "радио",
-  // dieta: "диета",
-  // diesel: "дизэль", // дизель?
-  // ariel: "ариэль",
-  // diament: "диамент",
-  // dialekt: "диалект",
-  // diametr: "диаметр",
-  // diaspora: "диаспора",
+  diesel: "дизэль", // дизель?
   murzasichle: "мурзасихле",
   erzac: "эрзац",
   tarzan: "тарзан",
-
-  // ośm: "осьм", // осьмь
-  // osiem: "осем", // осемь
-  // ośmiu: "осьмю", // осмю? осьмью?
 
   mafia: "мафия", // мафиа, мафйа
   mafie: "мафие", // мафиэ, мафйэ
@@ -299,33 +287,10 @@ const EXCEPTIONS_RU = {
 };
 
 const EXCEPTIONS_UA = {
-  // tiara: "тіара",
-  // radio: "радіо",
-  // dieta: "дієта",
-  // diesel: "дизель",
-  // ariel: "аріель",
-  // diament: "діамент",
-  // dialekt: "діалєкт",
-  // diametr: "діаметр",
-  // diaspora: "діаспора",
+  diesel: "дизель",
   murzasichle: "мурзасіхлє",
   erzac: "ерзац",
   tarzan: "тарзан",
-
-  // ośm: "осьм", // осьмь
-  // osiem: "осєм", // осємь
-  // ośmiu: "осьмю", // осмю? осьмью?
-
-  // mafia: "мафія", // мафіа, мафйа
-  // mafii: "мафії", // мафіи, мафйи
-  // mafij: "мафій",
-  // mafie: "мафіє", // мафіе, мафйе
-  // mafiom: "мафіом", // мафіом, мафйом
-  // mafię: "мафіѩ", // мафіѧ, мафйѧ
-  // mafią: "мафіѭ", // мафіѫ, мафйѫ
-  // mafiami: "мафіямі", // мафіамі, мафйамі
-  // mafiach: "мафіях",  // мафіах, мафйах
-  // mafio: "мафіо", // мафіо, мафйо
 
   diabeł: "диябел", // діа-
   diabły: "диябли", // діа-
@@ -627,7 +592,7 @@ const addSoftSignWords = new Set([
   "brew", "brzoskiew", "bukiew", "cerkiew", "chorągiew", "cietrzew", "czerw", "jątrew", "kotew", "krew", "marchew", "mątew", "nów", "nów", "rzodkiew", "wiećw", "wrocław", "zełw", "żełw", "żółw",
   "drób", "gołąb", "głąb", "kiełb", "źreb",
   "bluszcz", "dreszcz",
-  "czarnoziem", "osiem", "siedem", "ziem",
+  "czarnoziem", "osiem", "ośm", "siedem", "ziem",
   "konop",
   "brocz", "cyc", "kokosz", "mysz", "młodzież", "plesz", "pustosz", "rozkosz", "wesz", "łeż", "łącz", // not sure about these
 ]);
