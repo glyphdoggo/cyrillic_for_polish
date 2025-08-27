@@ -582,14 +582,18 @@ const EXCEPTIONS_UA = {
   podzygowanie: "подзиґованє",
 };
 
-const vowelMappingsHardRussian = {a:"а", e:"э", i:"и", y:"ы", o:"о", ó:"у̊", u:"у", ą:"ѫ", ę:"ѧ"
+const vowelMappingsHardRussian = {a:"а", e:"э", i:"и", y:"ы", o:"о", ó:"у́", // ó:"у̊",
+                                  u:"у", ą:"ѫ", ę:"ѧ"
 };
-const vowelMappingsSoftRussian = {a:"я", e:"е", i:"и", y:"и", o:"ё", ó:"ю̊", u:"ю", ą:"ѭ", ę:"ѩ"
+const vowelMappingsSoftRussian = {a:"я", e:"е", i:"и", y:"и", o:"ё", ó:"ю́", // ó:"ю̊",
+                                  u:"ю", ą:"ѭ", ę:"ѩ"
 };
 
-const vowelMappingsHardUkrainian = {a:"а", ą:"ѫ", e:"е", ę:"ѧ", i:"і", y:"и", o:"о", ó:"ӧ", u:"у"
+const vowelMappingsHardUkrainian = {a:"а", ą:"ѫ", e:"е", ę:"ѧ", i:"і", y:"и", o:"о", ó:"о́", // ó:"ӧ",
+                                    u:"у"
 };
-const vowelMappingsSoftUkrainian = {a:"я", ą:"ѭ", e:"є", ę:"ѩ", i:"і", y:"і", o:"ьо", ó:"ьӧ", u:"ю"
+const vowelMappingsSoftUkrainian = {a:"я", ą:"ѭ", e:"є", ę:"ѩ", i:"і", y:"і", o:"ьо", ó:"ьо́" // ó:"ьӧ",
+                                    u:"ю"
 };
 
 const consonantMappingsRussian = {
@@ -598,8 +602,8 @@ const consonantMappingsRussian = {
   śr:"ср", źr:"зр",
   ph:"ф",
   szcz:"щ",
-  ia:"я", ią:"ѭ", ie:"е", ię:"ѩ", io:"ё", ió:"ю̊", iu:"ю",
-  ja:"я", ją:"ѭ", je:"е", ję:"ѩ", ji:"и", jo:"ё", jó:"ю̊", ju:"ю"
+  ia:"я", ią:"ѭ", ie:"е", ię:"ѩ", io:"ё", iu:"ю", ió:"ю́", // ió:"ю̊",
+  ja:"я", ją:"ѭ", je:"е", ję:"ѩ", ji:"и", jo:"ё", ju:"ю", jó:"ю́" // jó:"ю̊",
 };
 
 const consonantMappingsUkrainian = {
@@ -608,8 +612,8 @@ const consonantMappingsUkrainian = {
   śr:"ср", źr:"зр",
   ph:"ф",
   szcz:"щ",
-  ia:"я", ią:"ѭ", ie:"є", ię:"ѩ", ii:"ї", io:"ьо", ió:"ьӧ", iu:"ю",
-  ja:"я", ją:"ѭ", je:"є", ję:"ѩ", ji:"і", jo:"ьо", jó:"ьӧ", ju:"ю"
+  ia:"я", ią:"ѭ", ie:"є", ię:"ѩ", ii:"ї", io:"ьо", iu:"ю", ió:"ьо́", // ió:"ьӧ",
+  ja:"я", ją:"ѭ", je:"є", ję:"ѩ", ji:"і", jo:"ьо", ju:"ю", jó:"ьо́", // jó:"ьӧ",
 };
 
 const palatalizingConsonants = ["dź","l","rz","ć","ń","ś","ź","śr","źr"];
