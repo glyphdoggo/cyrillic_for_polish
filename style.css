@@ -4,7 +4,7 @@ html, body {
     background-color: #323;
     color: #edc;
     height: 100%;
-    font-size: 18px;
+    font-size: 20px;
     font-family: sans-serif;
     align-content: center;
 }
@@ -13,7 +13,7 @@ textarea {
     font-family: sans-serif;
     background-color: #edc;
     width: 65%;
-    padding: 18px;
+    padding: 20px;
 }
 
 .interface {
