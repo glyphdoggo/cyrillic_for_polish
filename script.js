@@ -820,8 +820,12 @@ function transliterateWord(word, cfg) {
 
   // Add final soft sign
   if (addSoftSignWords.has(word.toLowerCase())) {
-    result += "ь";
-  } 
+    if (word === word.toUpperCase()) {
+      result += "Ь";
+    } else {
+      result += "ь";
+    }
+  }
 
   return result;
 }
