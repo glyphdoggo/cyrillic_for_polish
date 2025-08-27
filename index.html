@@ -43,45 +43,6 @@
       </div>
       <div class="two"></div>
       <script src="script.js"></script>
-      <div id="try" data-svgSource="https://raw.githubusercontent.com/glyphdoggo/cyrillic-for-polish/main/icon.svg" class=bigimg>
-          <canvas>
-            <img width="100" height="100" />
-            <img width="400" height="400" />
-          </canvas>
-      </div>
-      <script type="text/javascript">
-        convert('#try');
-        function convert(selectors){
-          [].forEach.call(document.querySelectorAll(selectors),function(div){
-            try{
-              var sourceImage;
-              var imgs = div.querySelectorAll('img'),
-                  svg  = div.querySelector('svg'),
-                  can  = div.querySelector('canvas'),
-                  ctx  = can.getContext('2d');
-              can.width  = imgs[1].getAttribute('width')*1;
-              can.height = imgs[1].getAttribute('height')*1;    
-              if (svg){
-                imgs[0].src = svgDataURL(svg);
-                sourceImage = new Image;
-                sourceImage.width  = can.width;
-                sourceImage.height = can.height;
-              }else{
-                sourceImage = imgs[0];
-              }
-              sourceImage.onload = function(){
-                ctx.drawImage(sourceImage,0,0,imgs[1].width,imgs[1].height);
-                imgs[1].src = can.toDataURL();
-              };
-              sourceImage.src = svg ? svgDataURL(svg) : div.getAttribute('data-svgSource');
-            }catch(e){ console.log(e) }
-          });
-        }
-        function svgDataURL(svg) {
-          var svgAsXML = (new XMLSerializer).serializeToString(svg);
-          return "data:image/svg+xml," + encodeURIComponent(svgAsXML);
-        }
-      </script>
     </div>
   </body>
 </html>
