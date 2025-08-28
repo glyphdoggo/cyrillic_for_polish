@@ -287,6 +287,7 @@ const EXCEPTIONS_RU = {
 };
 
 const EXCEPTIONS_UA = {
+  radio: "радіо",
   diesel: "дизель",
   murzasichle: "мурзасіхлє",
   erzac: "ерзац",
