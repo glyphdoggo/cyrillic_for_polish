@@ -10,10 +10,12 @@ html, body {
 }
 
 textarea {
+    margin: 0;
     font-family: "Noto Sans";
     background-color: #fed;
     width: 65%;
     padding: 18px;
+    font-size: 18px;
 }
 
 .interface {
