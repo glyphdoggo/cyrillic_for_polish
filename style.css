@@ -4,7 +4,7 @@ html, body {
     background-color: #2C2131;
     color: #fed;
     height: 100%;
-    font-size: 18px;
+    font-size: 16px;
     font-family: "Noto Sans";
     align-content: center;
 }
@@ -14,8 +14,9 @@ textarea {
     font-family: "Noto Sans";
     background-color: #fed;
     width: 65%;
-    padding: 18px;
-    font-size: 18px;
+    padding: 16px;
+    font-size: 100%;
+    line-height: 1;
 }
 
 .interface {
