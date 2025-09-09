@@ -709,6 +709,10 @@ function transliterateWord(word, cfg) {
 
         // Palatalization logic for ś, ź in clusters... and more ь insertion
         if (chunk === "ś" || chunk === "ź") {
+          if (i + length >= word.length) {
+            // Word-final ś or ź → always add ь
+            mapped += "ь";
+          } else {
           // Check if we should skip adding ь
           const nextIsSoftVowel = ["i","j"].includes(nextChar);
           const nextFollowedBySoft = (nextTwo.length === 2 && ["i","j"].includes(nextTwo[1]));
