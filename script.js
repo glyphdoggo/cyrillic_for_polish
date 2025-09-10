@@ -706,30 +706,44 @@ function transliterateWord(word, cfg) {
         } else {
           mapped = consonantMappings[chunk];
         }
-        
+
+        // Palatalization logic for ś, ź in clusters... and more ь insertion
         if (chunk === "ś" || chunk === "ź") {
           if (i + length >= word.length) {
             // Word-final ś or ź → always add ь
             mapped += "ь";
           } else {
-            // Existing logic for clusters
-            const nextChar = (i + length < word.length) ? word[i + length].toLowerCase() : "";
-            const nextTwo = word.slice(i + length, i + length + 2).toLowerCase();
+          // Check if we should skip adding ь
+          const nextIsSoftVowel = ["i","j"].includes(nextChar);
+          const nextFollowedBySoft = (nextTwo.length === 2 && ["i","j"].includes(nextTwo[1]));
+
+          // Check for special (soft) clusters after ś/ź: dź, dzi, rz
+          let nextClusterIsSoft = false;
+          if (nextTwo.startsWith("d") || nextTwo.startsWith("r")) {
             const nextCluster = word.slice(i + length, i + length + 3).toLowerCase();
-        
-            let nextClusterIsSoft = false;
-            if (nextCluster.startsWith("dź") || nextCluster.startsWith("dzi") || nextCluster.startsWith("rz")) {
+            if (
+              nextCluster.startsWith("dź") ||
+              nextCluster.startsWith("dzi")  ||
+              nextCluster.startsWith("rz")
+            ) {
               nextClusterIsSoft = true;
             }
-        
-            if (
-              !["i","j"].includes(nextChar) &&
-              !nonSoftSignFollowers.has(nextChar) &&
-              !(nextTwo.length === 2 && ["i","j"].includes(nextTwo[1])) &&
-              !nextClusterIsSoft
-            ) {
-              mapped += "ь";
-            }
+          }
+        }
+
+          if (
+            nextChar && // there is a next character
+            !["i","j"].includes(nextChar) && // next char is not a soft vowel
+            !nonSoftSignFollowers.has(nextChar) && // and it's not in non-soft followers
+            !(nextTwo.length === 2 && ["i","j"].includes(nextTwo[1])) && // next consonant followed by i/j
+            !nextClusterIsSoft // not part of a soft cluster
+          ) {
+            mapped += "ь";
+          }
+        } else if (palatalizingConsonants.includes(chunk)) {
+          // Normal palatalization logic
+          if (!nonSoftSignFollowers.has(nextChar)) {
+            mapped += "ь";
           }
         }
 
