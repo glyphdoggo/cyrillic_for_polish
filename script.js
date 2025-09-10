@@ -713,23 +713,22 @@ function transliterateWord(word, cfg) {
             // Word-final ś or ź → always add ь
             mapped += "ь";
           } else {
-          // Check if we should skip adding ь
-          const nextIsSoftVowel = ["i","j"].includes(nextChar);
-          const nextFollowedBySoft = (nextTwo.length === 2 && ["i","j"].includes(nextTwo[1]));
-
-          // Check for special (soft) clusters after ś/ź: dź, dzi, rz
-          let nextClusterIsSoft = false;
-          if (nextTwo.startsWith("d") || nextTwo.startsWith("r")) {
-            const nextCluster = word.slice(i + length, i + length + 3).toLowerCase();
-            if (
-              nextCluster.startsWith("dź") ||
-              nextCluster.startsWith("dzi")  ||
-              nextCluster.startsWith("rz")
-            ) {
-              nextClusterIsSoft = true;
+            // Check if we should skip adding ь
+            const nextIsSoftVowel = ["i","j"].includes(nextChar);
+            const nextFollowedBySoft = (nextTwo.length === 2 && ["i","j"].includes(nextTwo[1]));
+            // Check for special (soft) clusters after ś/ź: dź, dzi, rz
+            let nextClusterIsSoft = false;
+            if (nextTwo.startsWith("d") || nextTwo.startsWith("r")) {
+              const nextCluster = word.slice(i + length, i + length + 3).toLowerCase();
+              if (
+                nextCluster.startsWith("dź") ||
+                nextCluster.startsWith("dzi")  ||
+                nextCluster.startsWith("rz")
+              ) {
+                nextClusterIsSoft = true;
+              }
             }
           }
-        }
 
           if (
             nextChar && // there is a next character
