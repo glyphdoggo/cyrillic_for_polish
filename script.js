@@ -715,7 +715,7 @@ function transliterateWord(word, cfg) {
           } else {
             const nextIsSoftVowel = ["i","j"].includes(nextChar);
             const nextFollowedBySoft = (nextTwo.length === 2 && ["i","j"].includes(nextTwo[1]));
-        
+
             // Check for special soft clusters after ś/ź: dź, dzi, rz
             let nextClusterIsSoft = false;
             const nextCluster = word.slice(i + length, i + length + 3).toLowerCase();
@@ -726,7 +726,7 @@ function transliterateWord(word, cfg) {
             ) {
               nextClusterIsSoft = true;
             }
-        
+
             if (
               !nextIsSoftVowel &&
               !nonSoftSignFollowers.has(nextChar) &&
@@ -736,13 +736,12 @@ function transliterateWord(word, cfg) {
               mapped += "ь";
             }
           }
-        
+
           result += matchCase(mapped, chunkOrig[0]);
           prevCons = chunk;
           i += length;
           matched = true;
           break;
-        }
 
           if (
             nextChar && // there is a next character
