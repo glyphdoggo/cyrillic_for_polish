@@ -726,15 +726,22 @@ function transliterateWord(word, cfg) {
             ) {
               nextClusterIsSoft = true;
             }
-      
-          if (
-            !nextIsSoftVowel &&
-            !nonSoftSignFollowers.has(nextChar) &&
-            !nextFollowedBySoft &&
-            !nextClusterIsSoft
-          ) {
-            mapped += "ь";
+        
+            if (
+              !nextIsSoftVowel &&
+              !nonSoftSignFollowers.has(nextChar) &&
+              !nextFollowedBySoft &&
+              !nextClusterIsSoft
+            ) {
+              mapped += "ь";
+            }
           }
+        
+          result += matchCase(mapped, chunkOrig[0]);
+          prevCons = chunk;
+          i += length;
+          matched = true;
+          break;
         }
 
           if (
