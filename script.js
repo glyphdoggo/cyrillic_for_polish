@@ -568,6 +568,7 @@ const consonantMappingsRussian = {
   śr:"ср", źr:"зр",
   ph:"ф",
   szcz:"щ",
+  czcz:"тщ",
   ia:"я", ią:"ѭ", ie:"е", ię:"ѩ", io:"ё", iu:"ю", ió:"ю́", // ió:"ю̊",
   ja:"я", ją:"ѭ", je:"е", ję:"ѩ", ji:"и", jo:"ё", ju:"ю", jó:"ю́", // jó:"ю̊",
 };
@@ -578,6 +579,7 @@ const consonantMappingsUkrainian = {
   śr:"ср", źr:"зр",
   ph:"ф",
   szcz:"щ",
+  czcz:"тщ",
   ia:"я", ią:"ѭ", ie:"є", ię:"ѩ", ii:"ї", io:"ьо", iu:"ю", ió:"ьо́", // ió:"ьӧ",
   ja:"я", ją:"ѭ", je:"є", ję:"ѩ", ji:"і", jo:"ьо", ju:"ю", jó:"ьо́", // jó:"ьӧ",
 };
