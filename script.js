@@ -1,290 +1,95 @@
-const EXCEPTIONS_RU = {
+const EXCEPTION_RULES_RU = [
   diesel: "дизэль", // дизель?
   murzasichle: "мурзасихле",
   erzac: "эрзац",
   tarzan: "тарзан",
 
-  mafia: "мафия", // мафиа, мафйа
-  mafie: "мафие", // мафиэ, мафйэ
-  mafiom: "мафиём", // мафиом, мафйом
-  mafię: "мафиѩ", // мафиѧ, мафйѧ
-  mafią: "мафиѭ", // мафиѫ, мафйѫ
-  mafiami: "мафиями", // мафиами, мафйами
-  mafiach: "мафиях",  // мафиах, мафйах
-  mafio: "мафиё", // мафио, мафйо
+  // mafia
+  { regex: /^mafi(a|e|om|ę|ą|ami|ach|o)$/, replace: {
+      "a":"мафия", "e":"мафие", "om":"мафиём", "ę":"мафиѩ", "ą":"мафиѭ",
+      "ami":"мафиями", "ach":"мафиях", "o":"мафиё"
+    }
+  },
 
-  magia: "магия", // магиа, магйа
-  magie: "магие", // магиэ, магйэ
-  magiom: "магиём", // магиом, магйом
-  magię: "магиѩ", // магиѧ, магйѧ
-  magią: "магиѭ", // магиѫ, магйѫ
-  magiami: "магиями", // магиами, магйами
-  magiach: "магиях",  // магиах, магйах
-  magio: "магиё", // магио, магйо
+  // magia
+  { regex: /^magi(a|e|om|ę|ą|ami|ach|o)$/, replace: {
+      "a":"магия", "e":"магие", "om":"магиём", "ę":"магиѩ", "ą":"магиѭ",
+      "ami":"магиями", "ach":"магиях", "o":"магиё"
+    }
+  },
 
-  mania: "мания", // маниа, манйа
-  manie: "мание", // маниэ, манйэ
-  maniom: "маниём", // маниом, манйом
-  manię: "маниѩ", // маниѧ, манйѧ
-  manią: "маниѭ", // маниѫ, манйѫ
-  maniami: "маниями", // маниами, манйами
-  maniach: "маниях",  // маниах, манйах
-  manio: "маниё", // манио, манйо
+  // mania
+  { regex: /^mani(a|e|om|ę|ą|ami|ach|o)$/, replace: {
+      "a":"мания", "e":"мание", "om":"маниём", "ę":"маниѩ", "ą":"маниѭ",
+      "ami":"маниями", "ach":"маниях", "o":"маниё"
+    }
+  },
 
-  diabeł: "диабэл",
-  diabły: "диаблы",
-  diabli: "диабли",
-  diabła: "диабла",
-  diabłów: "диаблу̊в",
-  diabłu: "диаблу",
-  diabłom: "диаблом",
-  diabłem: "диаблэм",
-  diabłami: "диаблами",
-  diable: "диабле",
-  diabłach: "диаблах",
+  // diabeł
+  { regex: /^diab(eł|ły|li|ła|łów|łu|łom|łem|łami|le|łach)$/, replace: {
+      "eł":"диабэл", "ły":"диаблы", "li":"диабли", "ła":"диабла",
+      "łów":"диаблу̊в", "łu":"диаблу", "łom":"диаблом", "łem":"диаблэм",
+      "łami":"диаблами", "le":"диабле", "łach":"диаблах"
+    }
+  },
 
-  zamarzać: "замарзать",
-  zamarzam: "замарзам",
-  zamarzamy: "замарзамы",
-  zamarzasz: "замарзаш",
-  zamarzacie: "замарзате",
-  zamarza: "замарза",
-  zamarzają: "замарзаѭ",
-  zamarzałem: "замарзалэм",
-  zamarzał: "замарзал",
-  zamarzałam: "замарзалам",
-  zamarzała: "замарзала",
-  zamarzałom: "замарзалом",
-  zamarzało: "замарзало",
-  zamarzaliśmy: "замарзалисьмы",
-  zamarzali: "замарзали",
-  zamarzałyśmy: "замарзалысьмы",
-  zamarzały: "замарзалы",
-  zamarzałeś: "замарзалэсь",
-  zamarzałaś: "замарзалась",
-  zamarzałoś: "замарзалось",
-  zamarzaliście: "замарзалисте",
-  zamarzałyście: "замарзалысте",
-  zamarzano: "замарзано",
-  zamarzałbym: "замарзалбым",
-  zamarzałabym: "замарзалабым",
-  zamarzałobym: "замарзалобым",
-  zamarzalibyśmy: "замарзалибысьмы",
-  zamarzałybyśmy: "замарзалыбысьмы",
-  zamarzałbyś: "замарзалбысь",
-  zamarzałabyś: "замарзалабысь",
-  zamarzałobyś: "замарзалобысь",
-  zamarzalibyście: "замарзалибысте",
-  zamarzałybyście: "замарзалыбысте",
-  zamarzałby: "замарзалбы",
-  zamarzałaby: "замарзалабы",
-  zamarzałoby: "замарзалобы",
-  zamarzaliby: "замарзалибы",
-  zamarzałyby: "замарзалыбы",
-  zamarzajmy: "замарзаймы",
-  zamarzaj: "замарзай",
-  zamarzajcie: "замарзайте",
-  zamarzający: "замарзаѭци",
-  zamarzająca: "замарзаѭца",
-  zamarzające: "замарзаѭце",
-  zamarzając: "замарзаѭц",
-  zamarzanie: "замарзане",
+  // podzamcze
+  { regex: /^podzamcz(e|a|y|u|om|em|ami|ach)$/, replace: {
+      "e":"подзамче", "a":"подзамча", "y":"подзамчи", "u":"подзамчу",
+      "om":"подзамчом", "em":"подзамчем", "ami":"подзамчами", "ach":"подзамчах"
+    }
+  },
 
-  mierzić: "мерзить",
-  mierziły: "мерзилы",
-  mierzili: "мерзили",
-  mierziło: "мерзило",
-  mierziła: "мерзила",
-  mierziłam: "мерзилам",
-  mierził: "мерзил",
-  mierziłem: "мерзилэм",
-  mierzi: "мерзи",
-  mierzimy: "мерзимы",
-  mierzisz: "мерзиш",
-  mierzicie: "мерзите",
-  mierziłom: "мерзилом",
-  mierziliśmy: "мерзилисьмы",
-  mierziłyśmy: "мерзилысьмы",
-  mierziłeś: "мерзилэсь",
-  mierziłaś: "мерзилась",
-  mierziłoś: "мерзилось",
-  mierziliście: "мерзилисте",
-  mierziłyście: "мерзилысте",
-  mierziłbym: "мерзилбым",
-  mierziłabym: "мерзилабым",
-  mierziłobym: "мерзилобым",
-  mierzilibyśmy: "мерзилибысьмы",
-  mierziłybyśmy: "мерзилыбысьмы",
-  mierziłbyś: "мерзилбысь",
-  mierziłabyś: "мерзилабысь",
-  mierziłobyś: "мерзилобысь",
-  mierzilibyście: "мерзилибысте",
-  mierziłybyście: "мерзилыбысте",
-  mierziłby: "мерзилбы",
-  mierziłaby: "мерзилабы",
-  mierziłoby: "мерзилобы",
-  mierziliby: "мерзилибы",
-  mierziłyby: "мерзилыбы",
+  // podzbiór
+  { regex: /^podzbior(ów|y|u|owi|om|em|ami|ze|ach)?$/, replace: {
+      "":"подзбю̊р", "y":"подзбёры", "u":"подзбёру", "ów":"подзбёру̊в",
+      "owi":"подзбёрови", "om":"подзбёром", "em":"подзбёрэм",
+      "ami":"подзбёрами", "ze":"подзбёре", "ach":"подзбёрах"
+    }
+  },
 
-  podzamcze: "подзамче",
-  podzamcza: "подзамча",
-  podzamczy: "подзамчи",
-  podzamczu: "подзамчу",
-  podzamczom: "подзамчом",
-  podzamczem: "подзамчем",
-  podzamczami: "подзамчами",
-  podzamczach: "подзамчах",
+  // podzespół
+  { regex: /^podzespo(ły|łu|łów|łowi|łom|łem|łami|le|łach)?$/, replace: {
+      "":"подзэспу̊л", "ły":"подзэсполы", "łu":"подзэсполу", "łów":"подзэсполу̊в",
+      "łowi":"подзэсполови", "łom":"подзэсполом", "łem":"подзэсполэм",
+      "łami":"подзэсполами", "le":"подзэсполе", "łach":"подзэсполах"
+    }
+  },
 
-  podzbiór: "подзбю̊р",
-  podzbiory: "подзбёры",
-  podzbioru: "подзбёру",
-  podzbiorów: "подзбёру̊в",
-  podzbiorowi: "подзбёрови",
-  podzbiorom: "подзбёром",
-  podzbiorem: "подзбёрэм",
-  podzbiorami: "подзбёрами",
-  podzbiorze: "подзбёре",
-  podzbiorach: "подзбёрах",
+  // podziemie
+  { regex: /^podziemi(a|e|i|u|om|em|ami|ach)?$/, replace: {
+      "e":"подземе", "a":"подземя", "i":"подземи", "u":"подземю",
+      "om":"подземём", "em":"подземем", "ami":"подземями", "ach":"подземях"
+    }
+  },
 
-  podzespół: "подзэспу̊л",
-  podzespoły: "подзэсполы",
-  podzespołu: "подзэсполу",
-  podzespołów: "подзэсполу̊в",
-  podzespołowi: "подзэсполови",
-  podzespołom: "подзэсполом",
-  podzespołem: "подзэсполэм",
-  podzespołami: "подзэсполами",
-  podzespole: "подзэсполе",
-  podzespołach: "подзэсполах",
+  // podziemny
+  { regex: /^podziemn(y|a|e|i|ego|ej|ych|emu|ym|ą|ymi)$/, replace: {
+      "y":"подземны", "a":"подземна", "e":"подземнэ", "i":"подземни",
+      "ego":"подземнэго", "ej":"подземнэй", "ych":"подземных",
+      "emu":"подземнэму", "ym":"подземным", "ą":"подземнѫ",
+      "ymi":"подземными"
+    }
+  },
 
-  podziemie: "подземе",
-  podziemia: "подземя",
-  podziemi: "подземи",
-  podziemiu: "подземю",
-  podziemiom: "подземём",
-  podziemiem: "подземем",
-  podziemiami: "подземями",
-  podziemiach: "подземях",
+  // podzwrotnikowy
+  { regex: /^podzwrotnikow(y|a|e|i|ego|ej|ych|emu|ym|ą|ymi)$/, replace: {
+      "y":"подзвротниковы", "a":"подзвротникова", "e":"подзвротниковэ",
+      "i":"подзвротникови", "ego":"подзвротниковэго", "ej":"подзвротниковэй",
+      "ych":"подзвротниковых", "emu":"подзвротниковэму", "ym":"подзвротниковым",
+      "ą":"подзвротниковѫ", "ymi":"подзвротниковыми"
+    }
+  },
 
-  podziemny: "подземны",
-  podziemna: "подземна",
-  podziemne: "подземнэ",
-  podziemni: "подземни",
-  podziemnego: "подземнэго",
-  podziemnej: "подземнэй",
-  podziemnych: "подземных",
-  podziemnemu: "подземнэму",
-  podziemnym: "подземным",
-  podziemną: "подземнѫ",
-  podziemnymi: "подземными",
+  // mierzić
+  { regex: /^mierzi(.*)$/, replace: (m) => "мерзи" + transliterateEnding(m[1]) },
 
-  podzwrotnikowy: "подзвротниковы",
-  podzwrotnikowa: "подзвротникова",
-  podzwrotnikowe: "подзвротниковэ",
-  podzwrotnikowi: "подзвротникови",
-  podzwrotnikowego: "подзвротниковэго",
-  podzwrotnikowej: "подзвротниковэй",
-  podzwrotnikowych: "подзвротниковых",
-  podzwrotnikowemu: "подзвротниковэму",
-  podzwrotnikowym: "подзвротниковым",
-  podzwrotnikową: "подзвротниковѫ",
-  podzwrotnikowymi: "подзвротниковыми",
+  // podziérzgnąć
+  { regex: /^podziérzgn(.*)$/, replace: (m) => "поддерьгн" + transliterateEnding(m[1]) },
 
-  podziérzgnąć: "поддерьгнѫть",
-  podziérzgnę: "поддерьгнѧ",
-  podziérzgniemy: "поддерьгнемы",
-  podziérzgniesz: "поддерьгнеш",
-  podziérzgniecie: "поддерьгнете",
-  podziérzgnie: "поддерьгне",
-  podziérzgną: "поддерьгнѫ",
-  podziérzgnąłem: "поддерьгнѫлэм",
-  podziérzgnął: "поддерьгнѫл",
-  podziérzgnęłam: "поддерьгнѧлам",
-  podziérzgnęła: "поддерьгнѧла",
-  podziérzgnęłom: "поддерьгнѧлом",
-  podziérzgnęło: "поддерьгнѧло",
-  podziérzgnęliśmy: "поддерьгнѧлисьмы",
-  podziérzgnęli: "поддерьгнѧли",
-  podziérzgnęłyśmy: "поддерьгнѧлысьмы",
-  podziérzgnęły: "поддерьгнѧлы",
-  podziérzgnąłeś: "поддерьгнѫлэсь",
-  podziérzgnęłaś: "поддерьгнѧлась",
-  podziérzgnęłoś: "поддерьгнѧлось",
-  podziérzgnęliście: "поддерьгнѧлисте",
-  podziérzgnęłyście: "поддерьгнѧлысте",
-  podziérzgnięto: "поддерьгнѩто",
-  podziérzgnąłbym: "поддерьгнѫлбым",
-  podziérzgnęłabym: "поддерьгнѧлабым",
-  podziérzgnęłobym: "поддерьгнѧлобым",
-  podziérzgnęlibyśmy: "поддерьгнѧлибысьмы",
-  podziérzgnęłybyśmy: "поддерьгнѧлыбысьмы",
-  podziérzgnąłbyś: "поддерьгнѫлбысь",
-  podziérzgnęłabyś: "поддерьгнѧлабысь",
-  podziérzgnęłobyś: "поддерьгнѧлобысь",
-  podziérzgnęlibyście: "поддерьгнѧлибысте",
-  podziérzgnęłybyście: "поддерьгнѧлыбысте",
-  podziérzgnąłby: "поддерьгнѫлбы",
-  podziérzgnęłaby: "поддерьгнѧлабы",
-  podziérzgnęłoby: "поддерьгнѧлобы",
-  podziérzgnęliby: "поддерьгнѧлибы",
-  podziérzgnęłyby: "поддерьгнѧлыбы",
-  podziérzgnijmy: "поддерьгниймы",
-  podziérzgnij: "поддерьгний",
-  podziérzgnijcie: "поддерьгнийте",
-  podziérzgnąwszy: "поддерьгнѫвши",
-  podziérzgnięcie: "поддерьгнѩте",
-
-  podzygować: "подзыговать",
-  podzyguję: "подзыгуѩ",
-  podzygujemy: "подзыгуемы",
-  podzygujesz: "подзыгуеш",
-  podzygujecie: "подзыгуете",
-  podzyguje: "подзыгуе",
-  podzygują: "подзыгуѭ",
-  podzygowałem: "подзыговалэм",
-  podzygował: "подзыговал",
-  podzygowałam: "подзыговалам",
-  podzygowała: "подзыговала",
-  podzygowałom: "подзыговалом",
-  podzygowało: "подзыговало",
-  podzygowaliśmy: "подзыговалисьмы",
-  podzygowali: "подзыговали",
-  podzygowałyśmy: "подзыговалысьмы",
-  podzygowały: "подзыговалы",
-  podzygowałeś: "подзыговалэсь",
-  podzygowałaś: "подзыговалась",
-  podzygowałoś: "подзыговалось",
-  podzygowaliście: "подзыговалисте",
-  podzygowałyście: "подзыговалысте",
-  podzygowano: "подзыговано",
-  podzygowałbym: "подзыговалбым",
-  podzygowałabym: "подзыговалабым",
-  podzygowałobym: "подзыговалобым",
-  podzygowalibyśmy: "подзыговалибысьмы",
-  podzygowałybyśmy: "подзыговалыбысьмы",
-  podzygowałbyś: "подзыговалбысь",
-  podzygowałabyś: "подзыговалабысь",
-  podzygowałobyś: "подзыговалобысь",
-  podzygowalibyście: "подзыговалибысте",
-  podzygowałybyście: "подзыговалыбысте",
-  podzygowałby: "подзыговалбы",
-  podzygowałaby: "подзыговалабы",
-  podzygowałoby: "подзыговалобы",
-  podzygowaliby: "подзыговалибы",
-  podzygowałyby: "подзыговалыбы",
-  podzygujmy: "подзыгуймы",
-  podzyguj: "подзыгуй",
-  podzygujcie: "подзыгуйте",
-  podzygujący: "подзыгуѭци",
-  podzygująca: "подзыгуѭца",
-  podzygujące: "подзыгуѭце",
-  podzygowany: "подзыгованы",
-  podzygowana: "подзыгована",
-  podzygowane: "подзыгованэ",
-  podzygowani: "подзыговани",
-  podzygując: "подзыгуѭц",
-  podzygowanie: "подзыговане",
-};
+  // podzygować
+  { regex: /^podzygow(.*)$/, replace: (m) => "подзыгов" + transliterateEnding(m[1]) },
+];
 
 const EXCEPTIONS_UA = {
   radio: "радіо",
