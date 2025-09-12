@@ -1,94 +1,40 @@
 const EXCEPTION_RULES_RU = [
-  diesel: "дизэль", // дизель?
-  murzasichle: "мурзасихле",
-  erzac: "эрзац",
-  tarzan: "тарзан",
+  // diesel: "дизэль", // дизель?
+  // murzasichle: "мурзасихле",
+  // erzac: "эрзац",
+  // tarzan: "тарзан",
 
-  // mafia
-  { regex: /^mafi(a|e|om|ę|ą|ami|ach|o)$/, replace: {
-      "a":"мафия", "e":"мафие", "om":"мафиём", "ę":"мафиѩ", "ą":"мафиѭ",
-      "ami":"мафиями", "ach":"мафиях", "o":"мафиё"
-    }
-  },
-
-  // magia
-  { regex: /^magi(a|e|om|ę|ą|ami|ach|o)$/, replace: {
-      "a":"магия", "e":"магие", "om":"магиём", "ę":"магиѩ", "ą":"магиѭ",
-      "ami":"магиями", "ach":"магиях", "o":"магиё"
-    }
-  },
-
-  // mania
-  { regex: /^mani(a|e|om|ę|ą|ami|ach|o)$/, replace: {
-      "a":"мания", "e":"мание", "om":"маниём", "ę":"маниѩ", "ą":"маниѭ",
-      "ami":"маниями", "ach":"маниях", "o":"маниё"
-    }
-  },
+  // mafia/magia/mania → irregular vowel treatment
+  { regex: /^mafi(.*)$/, replace: (m) => "мафи" + transliterateEnding(m[1]) },
+  { regex: /^magi(.*)$/, replace: (m) => "маги" + transliterateEnding(m[1]) },
+  { regex: /^mani(.*)$/, replace: (m) => "мани" + transliterateEnding(m[1]) },
 
   // diabeł
-  { regex: /^diab(eł|ły|li|ła|łów|łu|łom|łem|łami|le|łach)$/, replace: {
-      "eł":"диабэл", "ły":"диаблы", "li":"диабли", "ła":"диабла",
-      "łów":"диаблу̊в", "łu":"диаблу", "łom":"диаблом", "łem":"диаблэм",
-      "łami":"диаблами", "le":"диабле", "łach":"диаблах"
-    }
-  },
-
-  // podzamcze
-  { regex: /^podzamcz(e|a|y|u|om|em|ami|ach)$/, replace: {
-      "e":"подзамче", "a":"подзамча", "y":"подзамчи", "u":"подзамчу",
-      "om":"подзамчом", "em":"подзамчем", "ami":"подзамчами", "ach":"подзамчах"
-    }
-  },
-
-  // podzbiór
-  { regex: /^podzbior(ów|y|u|owi|om|em|ami|ze|ach)?$/, replace: {
-      "":"подзбю̊р", "y":"подзбёры", "u":"подзбёру", "ów":"подзбёру̊в",
-      "owi":"подзбёрови", "om":"подзбёром", "em":"подзбёрэм",
-      "ami":"подзбёрами", "ze":"подзбёре", "ach":"подзбёрах"
-    }
-  },
-
-  // podzespół
-  { regex: /^podzespo(ły|łu|łów|łowi|łom|łem|łami|le|łach)?$/, replace: {
-      "":"подзэспу̊л", "ły":"подзэсполы", "łu":"подзэсполу", "łów":"подзэсполу̊в",
-      "łowi":"подзэсполови", "łom":"подзэсполом", "łem":"подзэсполэм",
-      "łami":"подзэсполами", "le":"подзэсполе", "łach":"подзэсполах"
-    }
-  },
-
-  // podziemie
-  { regex: /^podziemi(a|e|i|u|om|em|ami|ach)?$/, replace: {
-      "e":"подземе", "a":"подземя", "i":"подземи", "u":"подземю",
-      "om":"подземём", "em":"подземем", "ami":"подземями", "ach":"подземях"
-    }
-  },
-
-  // podziemny
-  { regex: /^podziemn(y|a|e|i|ego|ej|ych|emu|ym|ą|ymi)$/, replace: {
-      "y":"подземны", "a":"подземна", "e":"подземнэ", "i":"подземни",
-      "ego":"подземнэго", "ej":"подземнэй", "ych":"подземных",
-      "emu":"подземнэму", "ym":"подземным", "ą":"подземнѫ",
-      "ymi":"подземными"
-    }
-  },
-
-  // podzwrotnikowy
-  { regex: /^podzwrotnikow(y|a|e|i|ego|ej|ych|emu|ym|ą|ymi)$/, replace: {
-      "y":"подзвротниковы", "a":"подзвротникова", "e":"подзвротниковэ",
-      "i":"подзвротникови", "ego":"подзвротниковэго", "ej":"подзвротниковэй",
-      "ych":"подзвротниковых", "emu":"подзвротниковэму", "ym":"подзвротниковым",
-      "ą":"подзвротниковѫ", "ymi":"подзвротниковыми"
-    }
-  },
+  { regex: /^diab(.*)$/, replace: (m) => "диаб" + transliterateEnding(m[1]) },
 
   // mierzić
   { regex: /^mierzi(.*)$/, replace: (m) => "мерзи" + transliterateEnding(m[1]) },
 
-  // podziérzgnąć
+  // podzamcz-
+  { regex: /^podzamcz(.*)$/, replace: (m) => "подзамч" + transliterateEnding(m[1]) },
+
+  // podzbior-
+  { regex: /^podzbior(.*)$/, replace: (m) => "подзбёр" + transliterateEnding(m[1]) },
+
+  // podzespoł-
+  { regex: /^podzespo(ł.*)$/, replace: (m) => "подзэспол" + transliterateEnding(m[1]) },
+
+  // podziem-
+  { regex: /^podziem(.*)$/, replace: (m) => "подзем" + transliterateEnding(m[1]) },
+
+  // podzwrotnikow-
+  { regex: /^podzwrotnikow(.*)$/, replace: (m) => "подзвротников" + transliterateEnding(m[1]) },
+
+  // podziérzgn-
   { regex: /^podziérzgn(.*)$/, replace: (m) => "поддерьгн" + transliterateEnding(m[1]) },
 
-  // podzygować
-  { regex: /^podzygow(.*)$/, replace: (m) => "подзыгов" + transliterateEnding(m[1]) },
+  // podzyg-
+  { regex: /^podzyg(.*)$/, replace: (m) => "подзыг" + transliterateEnding(m[1]) },
 ];
 
 const EXCEPTIONS_UA = {
