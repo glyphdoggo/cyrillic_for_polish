@@ -588,7 +588,7 @@ const palatalizingConsonants = ["dź","l","rz","ć","ń","ś","ź","śr","źr"];
 
 const softVowels = ["ia","ią","ie","ię","io","ió","iu"];
 
-const specialPrevConsonants = ["c", "cz", "dz", "sz", "szcz", "ż"];
+const specialPrevConsonants = ["c", "cz", "dz", "sz", "szcz", "ż", "czcz"];
 
 // List of dictionary forms that require a final ь
 const addSoftSignWords = new Set([
