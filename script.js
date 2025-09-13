@@ -1,3 +1,11 @@
+// const EXCEPTION_RULES_RU = [
+//   { regex: /^mafi(.*)$/, replace: (m, cfg) => "мафи" + transliterateEnding(m[1], cfg) },
+//   { regex: /^magi(.*)$/, replace: (m, cfg) => "маги" + transliterateEnding(m[1], cfg) },
+//   { regex: /^mani(.*)$/, replace: (m, cfg) => "мани" + transliterateEnding(m[1], cfg) },
+//   { regex: /^mierzi(.*)$/, replace: (m, cfg) => "мерзи" + transliterateEnding(m[1], cfg) },
+//   // ...and so on
+// ];
+
 const EXCEPTION_RULES_RU = [
   // diesel: "дизэль", // дизель?
   // murzasichle: "мурзасихле",
@@ -28,7 +36,7 @@ const EXCEPTION_RULES_RU = [
   { regex: /^podziem(.*)$/, replace: (m) => "подзем" + transliterateEnding(m[1]) },
 
   // podzwrotnikow-
-  { regex: /^podzwrotnikow(.*)$/, replace: (m) => "подзвротников" + transliterateEnding(m[1]) },
+  { regex: /^podzwrotnikow(.*)$/, replace: (m) => "подзвротников" + transliterate(m[1]) },
 
   // podziérzgn-
   { regex: /^podziérzgn(.*)$/, replace: (m) => "поддерьгн" + transliterateEnding(m[1]) },
@@ -299,29 +307,22 @@ const EXCEPTIONS_UA = {
   podzygowanie: "подзиґованє",
 };
 
-const vowelMappingsHardRussian = {a:"а", e:"э", i:"и", y:"ы", o:"о", ó:"у́", // ó:"у̊",
-                                  u:"у", ą:"ѫ", ę:"ѧ"
-};
-const vowelMappingsSoftRussian = {a:"я", e:"е", i:"и", y:"и", o:"ё", ó:"ю́", // ó:"ю̊",
-                                  u:"ю", ą:"ѭ", ę:"ѩ"
-};
+const vowelMappingsHardRussian = {a:"а", e:"э", i:"и", y:"ы", o:"о", ó:"у", u:"у", ą:"ѫ", ę:"ѧ"}; // ó:"у̊", "у́"
 
-const vowelMappingsHardUkrainian = {a:"а", ą:"ѫ", e:"е", ę:"ѧ", i:"і", y:"и", o:"о", ó:"о́", // ó:"ӧ",
-                                    u:"у"
-};
-const vowelMappingsSoftUkrainian = {a:"я", ą:"ѭ", e:"є", ę:"ѩ", i:"і", y:"і", o:"ьо", ó:"ьо́", // ó:"ьӧ",
-                                    u:"ю"
-};
+const vowelMappingsSoftRussian = {a:"я", e:"е", i:"и", y:"и", o:"ё", ó:"ю", u:"ю", ą:"ѭ", ę:"ѩ"}; // ó:"ю̊", "ю́"
+
+const vowelMappingsHardUkrainian = {a:"а", ą:"ѫ", e:"е", ę:"ѧ", i:"і", y:"и", o:"о", ó:"у", u:"у"}; // ó:"ӧ", "о́"
+
+const vowelMappingsSoftUkrainian = {a:"я", ą:"ѭ", e:"є", ę:"ѩ", i:"і", y:"і", o:"ьо", ó:"ю", u:"ю"}; // ó:"ьӧ", "ьо́"
 
 const consonantMappingsRussian = {
   b:"б", c:"ц", ć:"т", d:"д", f:"ф", g:"г", h:"х", j:"й", k:"к", l:"л", ł:"л", m:"м", n:"н", ń:"н", p:"п", q:"к", r:"р", s:"с", ś:"с", t:"т", v:"в", w:"в", x:"кс", z:"з", ź:"з", ż:"ж",
   ch:"х", cz:"ч", dz:"ѕ", dź:"д", rz:"р", sz:"ш",
   śr:"ср", źr:"зр",
   ph:"ф",
-  szcz:"щ",
-  czcz:"тщ",
-  ia:"я", ią:"ѭ", ie:"е", ię:"ѩ", io:"ё", iu:"ю", ió:"ю́", // ió:"ю̊",
-  ja:"я", ją:"ѭ", je:"е", ję:"ѩ", ji:"и", jo:"ё", ju:"ю", jó:"ю́", // jó:"ю̊",
+  szcz:"щ", czcz:"тщ",
+  ia:"я", ią:"ѭ", ie:"е", ię:"ѩ", io:"ё", iu:"ю", ió:"ю", // ió:"ю̊", "ю́"
+  ja:"я", ją:"ѭ", je:"е", ję:"ѩ", ji:"и", jo:"ё", ju:"ю", jó:"ю", // jó:"ю̊", "ю́"
 };
 
 const consonantMappingsUkrainian = {
@@ -329,10 +330,9 @@ const consonantMappingsUkrainian = {
   ch:"х", cz:"ч", dz:"ѕ", dź:"д", rz:"р", sz:"ш",
   śr:"ср", źr:"зр",
   ph:"ф",
-  szcz:"щ",
-  czcz:"тщ",
-  ia:"я", ią:"ѭ", ie:"є", ię:"ѩ", ii:"ї", io:"ьо", iu:"ю", ió:"ьо́", // ió:"ьӧ",
-  ja:"я", ją:"ѭ", je:"є", ję:"ѩ", ji:"і", jo:"ьо", ju:"ю", jó:"ьо́", // jó:"ьӧ",
+  szcz:"щ", czcz:"тщ",
+  ia:"я", ią:"ѭ", ie:"є", ię:"ѩ", ii:"ї", io:"ьо", iu:"ю", ió:"ю", // ió:"ьӧ", "ьо́"
+  ja:"я", ją:"ѭ", je:"є", ję:"ѩ", ji:"і", jo:"ьо", ju:"ю", jó:"ю", // jó:"ьӧ", "ьо́"
 };
 
 const palatalizingConsonants = ["dź","l","rz","ć","ń","ś","ź","śr","źr"];
@@ -354,6 +354,29 @@ const addSoftSignWords = new Set([
 function getSelectedOrthography() {
   const el = document.querySelector('input[name="orthography"]:checked');
   return el ? el.value : "russian";
+}
+
+function transliterateEnding(ending, cfg) {
+  if (!ending) return "";
+  return transliterateWord(ending, cfg);
+}
+
+function applyExceptions(word, cfg, EXCEPTION_RULES, EXCEPTIONS) {
+  // Regex-based rules first
+  for (const rule of EXCEPTION_RULES) {
+    const match = word.match(rule.regex);
+    if (match) {
+      const replaced = (typeof rule.replace === "function")
+        ? rule.replace(match, cfg)  // pass cfg for transliterateEnding
+        : rule.replace[match[1]];   // simple mapping
+      if (replaced) return replaced;
+    }
+  }
+
+  // Fallback to brute-force dictionary
+  if (EXCEPTIONS[word]) return EXCEPTIONS[word];
+
+  return null;
 }
 
 function transcribe() {
@@ -381,23 +404,37 @@ function transcribe() {
   for (const tok of tokens) {
     if (/^\p{L}+$/u.test(tok)) {
       const lower = tok.toLowerCase();
-      if (EXCEPTIONS[lower]) {
-        out += matchWordCase(tok, EXCEPTIONS[lower]);
+      // if (EXCEPTIONS[lower]) {
+      //   out += matchWordCase(tok, EXCEPTIONS[lower]);
+      // } else {
+      //   out += transliterateWord(tok, {
+      //     vowelMappingsHard,
+      //     vowelMappingsSoft,
+      //     consonantMappings,
+      //     palatalizingConsonants,
+      //     nonSoftSignFollowers,
+      //     isRussian,
+      //     specialPrevConsonants
+      //   });
+      // }
+      const cfg = {
+        vowelMappingsHard,
+        vowelMappingsSoft,
+        consonantMappings,
+        palatalizingConsonants,
+        nonSoftSignFollowers,
+        isRussian,
+        specialPrevConsonants
+      };
+      
+      const exceptionResult = applyExceptions(lower, cfg, EXCEPTION_RULES_RU, EXCEPTIONS);
+      if (exceptionResult) {
+        out += matchWordCase(tok, exceptionResult);
       } else {
-        out += transliterateWord(tok, {
-          vowelMappingsHard,
-          vowelMappingsSoft,
-          consonantMappings,
-          palatalizingConsonants,
-          nonSoftSignFollowers,
-          isRussian,
-          specialPrevConsonants
-        });
+        out += transliterateWord(tok, cfg);
+      } else {
+        out += tok;
       }
-    } else {
-      out += tok;
-    }
-  }
 
   outputEl.value = out;
 }
