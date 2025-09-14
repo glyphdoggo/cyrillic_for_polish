@@ -1,328 +1,83 @@
-// const EXCEPTION_RULES_RU = [
-//   { regex: /^mafi(.*)$/, replace: (m, cfg) => "мафи" + transliterateEnding(m[1], cfg) },
-//   { regex: /^magi(.*)$/, replace: (m, cfg) => "маги" + transliterateEnding(m[1], cfg) },
-//   { regex: /^mani(.*)$/, replace: (m, cfg) => "мани" + transliterateEnding(m[1], cfg) },
-//   { regex: /^mierzi(.*)$/, replace: (m, cfg) => "мерзи" + transliterateEnding(m[1], cfg) },
-//   // ...and so on
-// ];
-
-const EXCEPTION_RULES_RU = [
-  // diesel: "дизэль", // дизель?
-  // murzasichle: "мурзасихле",
-  // erzac: "эрзац",
-  // tarzan: "тарзан",
-
-  // mafia/magia/mania → irregular vowel treatment
-  { regex: /^mafi(.*)$/, replace: (m) => "мафи" + transliterateEnding(m[1]) },
-  { regex: /^magi(.*)$/, replace: (m) => "маги" + transliterateEnding(m[1]) },
-  { regex: /^mani(.*)$/, replace: (m) => "мани" + transliterateEnding(m[1]) },
-
-  // diabeł
-  { regex: /^diab(.*)$/, replace: (m) => "диаб" + transliterateEnding(m[1]) },
-
-  // mierzić
-  { regex: /^mierzi(.*)$/, replace: (m) => "мерзи" + transliterateEnding(m[1]) },
-
-  // podzamcz-
-  { regex: /^podzamcz(.*)$/, replace: (m) => "подзамч" + transliterateEnding(m[1]) },
-
-  // podzbior-
-  { regex: /^podzbior(.*)$/, replace: (m) => "подзбёр" + transliterateEnding(m[1]) },
-
-  // podzespoł-
-  { regex: /^podzespo(ł.*)$/, replace: (m) => "подзэспол" + transliterateEnding(m[1]) },
-
-  // podziem-
-  { regex: /^podziem(.*)$/, replace: (m) => "подзем" + transliterateEnding(m[1]) },
-
-  // podzwrotnikow-
-  { regex: /^podzwrotnikow(.*)$/, replace: (m) => "подзвротников" + transliterate(m[1]) },
-
-  // podziérzgn-
-  { regex: /^podziérzgn(.*)$/, replace: (m) => "поддерьгн" + transliterateEnding(m[1]) },
-
-  // podzyg-
-  { regex: /^podzyg(.*)$/, replace: (m) => "подзыг" + transliterateEnding(m[1]) },
-];
-
-const EXCEPTIONS_UA = {
-  radio: "радіо",
-  diesel: "дизель",
-  murzasichle: "мурзасіхлє",
-  erzac: "ерзац",
+const EXCEPTION_STEMS_RU = {
+  radi: "ради",
+  mafi: "мафи",
+  magi: "маги",
+  mani: "мани",
+  chemi: "хэми",
   tarzan: "тарзан",
-
-  diabeł: "диябел", // діа-
-  diabły: "диябли", // діа-
-  diabli: "дияблі", // діа-
-  diabła: "диябла", // діа-
-  diabłów: "дияблӧв", // діа-
-  diabłu: "дияблу", // діа-
-  diabłom: "дияблом", // діа-
-  diabłem: "дияблем", // діа-
-  diabłami: "диябламі", // діа-
-  diable: "дияблє", // діа-
-  diabłach: "дияблах", // діа-
-
-  zamarzać: "замарзать",
-  zamarzam: "замарзам",
-  zamarzamy: "замарзами",
-  zamarzasz: "замарзаш",
-  zamarzacie: "замарзатє",
+  erzac: "эрзац",
+  murzasich: "мурзасих",
+  dies: "диз",
+  diab: "диаб",
+  // diab: "дъяб",
   zamarza: "замарза",
-  zamarzają: "замарзаѭ",
-  zamarzałem: "замарзалем",
-  zamarzał: "замарзал",
-  zamarzałam: "замарзалам",
-  zamarzała: "замарзала",
-  zamarzałom: "замарзалом",
-  zamarzało: "замарзало",
-  zamarzaliśmy: "замарзалісьми",
-  zamarzali: "замарзалі",
-  zamarzałyśmy: "замарзалисьми",
-  zamarzały: "замарзали",
-  zamarzałeś: "замарзалесь",
-  zamarzałaś: "замарзалась",
-  zamarzałoś: "замарзалось",
-  zamarzaliście: "замарзалістє",
-  zamarzałyście: "замарзалистє",
-  zamarzano: "замарзано",
-  zamarzałbym: "замарзалбим",
-  zamarzałabym: "замарзалабим",
-  zamarzałobym: "замарзалобим",
-  zamarzalibyśmy: "замарзалібисьми",
-  zamarzałybyśmy: "замарзалибисьми",
-  zamarzałbyś: "замарзалбись",
-  zamarzałabyś: "замарзалабись",
-  zamarzałobyś: "замарзалобись",
-  zamarzalibyście: "замарзалібистє",
-  zamarzałybyście: "замарзалибистє",
-  zamarzałby: "замарзалби",
-  zamarzałaby: "замарзалаби",
-  zamarzałoby: "замарзалоби",
-  zamarzaliby: "замарзаліби",
-  zamarzałyby: "замарзалиби",
-  zamarzajmy: "замарзайми",
-  zamarzaj: "замарзай",
-  zamarzajcie: "замарзайтє",
-  zamarzający: "замарзаѭци",
-  zamarzająca: "замарзаѭца",
-  zamarzające: "замарзаѭце",
-  zamarzając: "замарзаѭц",
-  zamarzanie: "замарзанє",
-
-  mierzić: "мєрзіть",
-  mierziły: "мєрзіли",
-  mierzili: "мєрзілі",
-  mierziło: "мєрзіло",
-  mierziła: "мєрзіла",
-  mierziłam: "мєрзілам",
-  mierził: "мєрзіл",
-  mierziłem: "мєрзілем",
-  mierzi: "мєрзі",
-  mierzimy: "мєрзіми",
-  mierzisz: "мєрзіш",
-  mierzicie: "мєрзітє",
-  mierziłom: "мєрзілом",
-  mierziliśmy: "мєрзілісьми",
-  mierziłyśmy: "мєрзілисьми",
-  mierziłeś: "мєрзілесь",
-  mierziłaś: "мєрзілась",
-  mierziłoś: "мєрзілось",
-  mierziliście: "мєрзілістє",
-  mierziłyście: "мєрзілистє",
-  mierziłbym: "мєрзілбим",
-  mierziłabym: "мєрзілабим",
-  mierziłobym: "мєрзілобим",
-  mierzilibyśmy: "мєрзілібисьми",
-  mierziłybyśmy: "мєрзілибисьми",
-  mierziłbyś: "мєрзілбись",
-  mierziłabyś: "мєрзілабись",
-  mierziłobyś: "мєрзілобись",
-  mierzilibyście: "мєрзілібистє",
-  mierziłybyście: "мєрзілибистє",
-  mierziłby: "мєрзілби",
-  mierziłaby: "мєрзілаби",
-  mierziłoby: "мєрзілоби",
-  mierziliby: "мєрзіліби",
-  mierziłyby: "мєрзілиби",
-
-  podzamcze: "подзамче",
-  podzamcza: "подзамча",
-  podzamczy: "подзамчи",
-  podzamczu: "подзамчу",
-  podzamczom: "подзамчом",
-  podzamczem: "подзамчем",
-  podzamczami: "подзамчамі",
-  podzamczach: "подзамчах",
-
-  podzbiór: "подзбьӧр",
-  podzbiory: "подзбьори",
-  podzbioru: "подзбьору",
-  podzbiorów: "подзбьорӧв",
-  podzbiorowi: "подзбьорові",
-  podzbiorom: "подзбьором",
-  podzbiorem: "подзбьорем",
-  podzbiorami: "подзбьорамі",
-  podzbiorze: "подзбьорє",
-  podzbiorach: "подзбьорах",
-
-  podzespół: "подзеспӧл",
-  podzespoły: "подзесполи",
-  podzespołu: "подзесполу",
-  podzespołów: "подзесполӧв",
-  podzespołowi: "подзесполові",
-  podzespołom: "подзесполом",
-  podzespołem: "подзесполем",
-  podzespołami: "подзесполамі",
-  podzespole: "подзесполє",
-  podzespołach: "подзесполах",
-
-  podziemie: "подзємє",
-  podziemia: "подзємя",
-  podziemi: "подзємі",
-  podziemiu: "подзємю",
-  podziemiom: "подзємьом",
-  podziemiem: "подзємєм",
-  podziemiami: "подзємямі",
-  podziemiach: "подзємях",
-
-  podziemny: "подзємни",
-  podziemna: "подзємна",
-  podziemne: "подзємне",
-  podziemni: "подзємні",
-  podziemnego: "подзємнеґо",
-  podziemnej: "подзємней",
-  podziemnych: "подзємних",
-  podziemnemu: "подзємнему",
-  podziemnym: "подзємним",
-  podziemną: "подзємнѫ",
-  podziemnymi: "подзємнимі",
-
-  podzwrotnikowy: "подзвротнікови",
-  podzwrotnikowa: "подзвротнікова",
-  podzwrotnikowe: "подзвротнікове",
-  podzwrotnikowi: "подзвротнікові",
-  podzwrotnikowego: "подзвротніковеґо",
-  podzwrotnikowej: "подзвротніковей",
-  podzwrotnikowych: "подзвротнікових",
-  podzwrotnikowemu: "подзвротніковему",
-  podzwrotnikowym: "подзвротніковим",
-  podzwrotnikową: "подзвротніковѫ",
-  podzwrotnikowymi: "подзвротніковимі",
-
-  podziérzgnąć: "поддєрьґнѫть",
-  podziérzgnę: "поддєрьґнѧ",
-  podziérzgniemy: "поддєрьґнєми",
-  podziérzgniesz: "поддєрьґнєш",
-  podziérzgniecie: "поддєрьґнєтє",
-  podziérzgnie: "поддєрьґнє",
-  podziérzgną: "поддєрьґнѫ",
-  podziérzgnąłem: "поддєрьґнѫлем",
-  podziérzgnął: "поддєрьґнѫл",
-  podziérzgnęłam: "поддєрьґнѧлам",
-  podziérzgnęła: "поддєрьґнѧла",
-  podziérzgnęłom: "поддєрьґнѧлом",
-  podziérzgnęło: "поддєрьґнѧло",
-  podziérzgnęliśmy: "поддєрьґнѧлісьми",
-  podziérzgnęli: "поддєрьґнѧлі",
-  podziérzgnęłyśmy: "поддєрьґнѧлисьми",
-  podziérzgnęły: "поддєрьґнѧли",
-  podziérzgnąłeś: "поддєрьґнѫлесь",
-  podziérzgnęłaś: "поддєрьґнѧлась",
-  podziérzgnęłoś: "поддєрьґнѧлось",
-  podziérzgnęliście: "поддєрьґнѧлістє",
-  podziérzgnęłyście: "поддєрьґнѧлистє",
-  podziérzgnięto: "поддєрьґнѩто",
-  podziérzgnąłbym: "поддєрьґнѫлбим",
-  podziérzgnęłabym: "поддєрьґнѧлабим",
-  podziérzgnęłobym: "поддєрьґнѧлобим",
-  podziérzgnęlibyśmy: "поддєрьґнѧлібисьми",
-  podziérzgnęłybyśmy: "поддєрьґнѧлибисьми",
-  podziérzgnąłbyś: "поддєрьґнѫлбись",
-  podziérzgnęłabyś: "поддєрьґнѧлабись",
-  podziérzgnęłobyś: "поддєрьґнѧлобись",
-  podziérzgnęlibyście: "поддєрьґнѧлібистє",
-  podziérzgnęłybyście: "поддєрьґнѧлибистє",
-  podziérzgnąłby: "поддєрьґнѫлби",
-  podziérzgnęłaby: "поддєрьґнѧлаби",
-  podziérzgnęłoby: "поддєрьґнѧлоби",
-  podziérzgnęliby: "поддєрьґнѧліби",
-  podziérzgnęłyby: "поддєрьґнѧлиби",
-  podziérzgnijmy: "поддєрьґнійми",
-  podziérzgnij: "поддєрьґній",
-  podziérzgnijcie: "поддєрьґнійтє",
-  podziérzgnąwszy: "поддєрьґнѫвши",
-  podziérzgnięcie: "поддєрьґнѩтє",
-
-  podzygować: "подзиґовать",
-  podzyguję: "подзиґуѩ",
-  podzygujemy: "подзиґуєми",
-  podzygujesz: "подзиґуєш",
-  podzygujecie: "подзиґуєтє",
-  podzyguje: "подзиґує",
-  podzygują: "подзиґуѭ",
-  podzygowałem: "подзиґовалем",
-  podzygował: "подзиґовал",
-  podzygowałam: "подзиґовалам",
-  podzygowała: "подзиґовала",
-  podzygowałom: "подзиґовалом",
-  podzygowało: "подзиґовало",
-  podzygowaliśmy: "подзиґовалісьми",
-  podzygowali: "подзиґовалі",
-  podzygowałyśmy: "подзиґовалисьми",
-  podzygowały: "подзиґовали",
-  podzygowałeś: "подзиґовалесь",
-  podzygowałaś: "подзиґовалась",
-  podzygowałoś: "подзиґовалось",
-  podzygowaliście: "подзиґовалістє",
-  podzygowałyście: "подзиґовалистє",
-  podzygowano: "подзиґовано",
-  podzygowałbym: "подзиґовалбим",
-  podzygowałabym: "подзиґовалабим",
-  podzygowałobym: "подзиґовалобим",
-  podzygowalibyśmy: "подзиґовалібисьми",
-  podzygowałybyśmy: "подзиґовалибисьми",
-  podzygowałbyś: "подзиґовалбись",
-  podzygowałabyś: "подзиґовалабись",
-  podzygowałobyś: "подзиґовалобись",
-  podzygowalibyście: "подзиґовалібистє",
-  podzygowałybyście: "подзиґовалибистє",
-  podzygowałby: "подзиґовалби",
-  podzygowałaby: "подзиґовалаби",
-  podzygowałoby: "подзиґовалоби",
-  podzygowaliby: "подзиґоваліби",
-  podzygowałyby: "подзиґовалиби",
-  podzygujmy: "подзиґуйми",
-  podzyguj: "подзиґуй",
-  podzygujcie: "подзиґуйтє",
-  podzygujący: "подзиґуѭци",
-  podzygująca: "подзиґуѭца",
-  podzygujące: "подзиґуѭце",
-  podzygowany: "подзиґовани",
-  podzygowana: "подзиґована",
-  podzygowane: "подзиґоване",
-  podzygowani: "подзиґовані",
-  podzygując: "подзиґуѭц",
-  podzygowanie: "подзиґованє",
+  mierzi: "мерзи",
+  podzamcz: "подзамч",
+  podzb: "подзб",
+  podzesp: "подзэсп",
+  podziem: "подзем",
+  podzwrot: "подзврот",
+  podziérzgn: "поддерьгн",
+  podzyg: "подзыг",
+  ludzk: "людск",
 };
 
-const vowelMappingsHardRussian = {a:"а", e:"э", i:"и", y:"ы", o:"о", ó:"у", u:"у", ą:"ѫ", ę:"ѧ"}; // ó:"у̊", "у́"
+const EXCEPTIONS_RU = Object.entries(EXCEPTION_STEMS_RU).map(([latin, cyrillic]) => ({
+  regex: new RegExp("^" + latin + "(.*)$"),
+  replace: (m, cfg) => cyrillic + (m[1] ? transliterateWord(m[1], cfg) : "")
+}));
 
-const vowelMappingsSoftRussian = {a:"я", e:"е", i:"и", y:"и", o:"ё", ó:"ю", u:"ю", ą:"ѭ", ę:"ѩ"}; // ó:"ю̊", "ю́"
+const EXCEPTION_STEMS_UA = {
+  radi: "раді",
+  mafi: "мафі",
+  magi: "магі",
+  mani: "мані",
+  chemi: "хемі",
+  tarzan: "тарзан",
+  erzac: "ерзац",
+  murzasich: "мурзасіх",
+  dies: "диз",
+  // diab: "діаб",
+  zamarza: "замарза",
+  mierzi: "мєрзі",
+  podzamcz: "подзамч",
+  podzb: "подзб",
+  podzesp: "подзесп",
+  podziem: "подзєм",
+  podzwrot: "подзврот",
+  podziérzgn: "поддєрьґн",
+  podzyg: "подзиґ",
+  ludzk: "людск",
+};
 
-const vowelMappingsHardUkrainian = {a:"а", ą:"ѫ", e:"е", ę:"ѧ", i:"і", y:"и", o:"о", ó:"у", u:"у"}; // ó:"ӧ", "о́"
+const EXCEPTIONS_UA = Object.entries(EXCEPTION_STEMS_UA).map(([latin, cyrillic]) => ({
+  regex: new RegExp("^" + latin + "(.*)$"),
+  replace: (m, cfg) => cyrillic + (m[1] ? transliterateWord(m[1], cfg) : "")
+}));
 
-const vowelMappingsSoftUkrainian = {a:"я", ą:"ѭ", e:"є", ę:"ѩ", i:"і", y:"і", o:"ьо", ó:"ю", u:"ю"}; // ó:"ьӧ", "ьо́"
+const vowelMappingsHardRussian = {a:"а", e:"э", i:"и", y:"ы", o:"о", ó:"у", // ó:"у́", ó:"у̊",
+                                  u:"у", ą:"ѫ", ę:"ѧ"
+};
+const vowelMappingsSoftRussian = {a:"я", e:"е", i:"и", y:"и", o:"ё", ó:"ю", // ó:"ю́", ó:"ю̊",
+                                  u:"ю", ą:"ѭ", ę:"ѩ"
+};
+
+const vowelMappingsHardUkrainian = {a:"а", ą:"ѫ", e:"е", ę:"ѧ", i:"і", y:"и", o:"о", ó:"у", // ó:"ӧ", ó:"о́",
+                                    u:"у"
+};
+const vowelMappingsSoftUkrainian = {a:"я", ą:"ѭ", e:"є", ę:"ѩ", i:"і", y:"і", o:"ьо", ó:"ю", // ó:"ьӧ", ó:"ьо́",
+                                    u:"ю"
+};
 
 const consonantMappingsRussian = {
   b:"б", c:"ц", ć:"т", d:"д", f:"ф", g:"г", h:"х", j:"й", k:"к", l:"л", ł:"л", m:"м", n:"н", ń:"н", p:"п", q:"к", r:"р", s:"с", ś:"с", t:"т", v:"в", w:"в", x:"кс", z:"з", ź:"з", ż:"ж",
   ch:"х", cz:"ч", dz:"ѕ", dź:"д", rz:"р", sz:"ш",
   śr:"ср", źr:"зр",
   ph:"ф",
-  szcz:"щ", czcz:"тщ",
-  ia:"я", ią:"ѭ", ie:"е", ię:"ѩ", io:"ё", iu:"ю", ió:"ю", // ió:"ю̊", "ю́"
-  ja:"я", ją:"ѭ", je:"е", ję:"ѩ", ji:"и", jo:"ё", ju:"ю", jó:"ю", // jó:"ю̊", "ю́"
+  szcz:"щ",
+  czcz:"тщ",
+  ia:"я", ią:"ѭ", ie:"е", ię:"ѩ", io:"ё", iu:"ю", ió:"ю", // ió:"ю́", ió:"ю̊",
+  ja:"я", ją:"ѭ", je:"е", ję:"ѩ", ji:"и", jo:"ё", ju:"ю", jó:"ю", // jó:"ю́", jó:"ю̊",
 };
 
 const consonantMappingsUkrainian = {
@@ -330,9 +85,10 @@ const consonantMappingsUkrainian = {
   ch:"х", cz:"ч", dz:"ѕ", dź:"д", rz:"р", sz:"ш",
   śr:"ср", źr:"зр",
   ph:"ф",
-  szcz:"щ", czcz:"тщ",
-  ia:"я", ią:"ѭ", ie:"є", ię:"ѩ", ii:"ї", io:"ьо", iu:"ю", ió:"ю", // ió:"ьӧ", "ьо́"
-  ja:"я", ją:"ѭ", je:"є", ję:"ѩ", ji:"і", jo:"ьо", ju:"ю", jó:"ю", // jó:"ьӧ", "ьо́"
+  szcz:"щ",
+  czcz:"тщ",
+  ia:"я", ią:"ѭ", ie:"є", ię:"ѩ", ii:"ї", io:"ьо", iu:"ю", ió:"ю", // ió:"ьо́", ió:"ьӧ",
+  ja:"я", ją:"ѭ", je:"є", ję:"ѩ", ji:"і", jo:"ьо", ju:"ю", jó:"ю", // jó:"ьо́", jó:"ьӧ",
 };
 
 const palatalizingConsonants = ["dź","l","rz","ć","ń","ś","ź","śr","źr"];
@@ -343,7 +99,7 @@ const specialPrevConsonants = ["c", "cz", "dz", "sz", "szcz", "ż", "czcz"];
 
 // List of dictionary forms that require a final ь
 const addSoftSignWords = new Set([
-  "brew", "brzoskiew", "bukiew", "cerkiew", "chorągiew", "cietrzew", "czerw", "jątrew", "kotew", "krew", "marchew", "mątew", "nów", "nów", "rzodkiew", "wiećw", "wrocław", "zełw", "żełw", "żółw",
+  "brew", "brzoskiew", "bukiew", "cerkiew", "chorągiew", "cietrzew", "czerw", "jątrew", "kotew", "krew", "marchew", "mątew", "nów", "rzodkiew", "wiećw", "wrocław", "zełw", "żełw", "żółw",
   "drób", "gołąb", "głąb", "kiełb", "źreb",
   "bluszcz", "dreszcz",
   "czarnoziem", "osiem", "ośm", "siedem", "ziem",
@@ -356,27 +112,17 @@ function getSelectedOrthography() {
   return el ? el.value : "russian";
 }
 
-function transliterateEnding(ending, cfg) {
-  if (!ending) return "";
-  return transliterateWord(ending, cfg);
-}
-
-function applyExceptions(word, cfg, EXCEPTION_RULES, EXCEPTIONS) {
-  // Regex-based rules first
-  for (const rule of EXCEPTION_RULES) {
-    const match = word.match(rule.regex);
+function applyExceptions(wordLower, cfg, rules) {
+  // 1) regex rules (ordered)
+  for (const rule of rules) {
+    const match = wordLower.match(rule.regex);
     if (match) {
-      const replaced = (typeof rule.replace === "function")
-        ? rule.replace(match, cfg)  // pass cfg for transliterateEnding
-        : rule.replace[match[1]];   // simple mapping
-      if (replaced) return replaced;
+      // rule.replace can be a function that returns a mapped string
+      return rule.replace(match, cfg);
     }
   }
 
-  // Fallback to brute-force dictionary
-  if (EXCEPTIONS[word]) return EXCEPTIONS[word];
-
-  return null;
+  return null; // no exception
 }
 
 function transcribe() {
@@ -404,19 +150,7 @@ function transcribe() {
   for (const tok of tokens) {
     if (/^\p{L}+$/u.test(tok)) {
       const lower = tok.toLowerCase();
-      // if (EXCEPTIONS[lower]) {
-      //   out += matchWordCase(tok, EXCEPTIONS[lower]);
-      // } else {
-      //   out += transliterateWord(tok, {
-      //     vowelMappingsHard,
-      //     vowelMappingsSoft,
-      //     consonantMappings,
-      //     palatalizingConsonants,
-      //     nonSoftSignFollowers,
-      //     isRussian,
-      //     specialPrevConsonants
-      //   });
-      // }
+
       const cfg = {
         vowelMappingsHard,
         vowelMappingsSoft,
@@ -426,15 +160,18 @@ function transcribe() {
         isRussian,
         specialPrevConsonants
       };
-      
-      const exceptionResult = applyExceptions(lower, cfg, EXCEPTION_RULES_RU, EXCEPTIONS);
+
+      const exceptionResult = applyExceptions(lower, cfg, EXCEPTIONS);
       if (exceptionResult) {
         out += matchWordCase(tok, exceptionResult);
       } else {
         out += transliterateWord(tok, cfg);
-      } else {
-        out += tok;
       }
+    } else {
+      out += tok;
+    }
+
+  }
 
   outputEl.value = out;
 }
@@ -549,7 +286,7 @@ function transliterateWord(word, cfg) {
           }
         }
 
-        if (["n","s","z"].includes(chunk) && nextChar === "j") {
+        if (["ł","n","s","z"].includes(chunk) && nextChar === "j") {
           mapped += "ъ";
         }
 
