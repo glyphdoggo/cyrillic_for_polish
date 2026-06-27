@@ -1,8 +1,10 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Cyrillic Transcriber for Polish</title>
 
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="An easy-to-use web app for transcribing Polish text into the Cyrillic script.">
     <meta name="keywords" content="Polish, Cyrillic, transliteration, transcription, orthography">
     <meta name="author" content="Daniel Saeger">
@@ -12,439 +14,250 @@
     <meta property="og:image" content="https://raw.githubusercontent.com/glyphdoggo/cyrillic-for-polish/main/banner.png">
     <meta property="og:url" content="https://glyphdoggo.github.io/cyrillic-for-polish/">
 
-    <meta name="twitter:title" content="Cyrillic Transcriber for Polish">
-    <meta name="twitter:description" content="An easy-to-use web app for transcribing Polish text into the Cyrillic script.">
-    <meta name="twitter:image" content="https://raw.githubusercontent.com/glyphdoggo/cyrillic-for-polish/main/banner.png">
-    <meta name="twitter:card" content="summary_large_image">
-
     <link rel="icon" href="https://raw.githubusercontent.com/glyphdoggo/cyrillic-for-polish/main/icon.png">
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+      
       html, body {
-        margin: 0;
-        text-align: center;
         background-color: #2C2131;
         color: #fed;
         height: 100%;
-        font-size: 16px;
-        font-family: "Noto Sans";
-        align-content: center;
+        margin: 0;
+        font-family: "Noto Sans", sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
       }
       
       textarea {
-        margin: 0;
-        font-family: "Noto Sans";
+        font-family: "Noto Sans", sans-serif;
         background-color: #fed;
-        width: 65%;
+        color: #2C2131;
+        width: 100%;
         padding: 16px;
-        font-size: 100%;
+        font-size: 1rem;
         line-height: 1.25;
+        border-radius: 10px;
+        border: none;
+        box-sizing: border-box;
+        resize: vertical;
+        max-width: 80%;
       }
-      
+
       .interface {
         display: flex;
-        height: 100%;
         flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .options {
+        margin-top: 10px;
+        font-size: 1.1rem;
       }
       
-      .one {
-        align-content: center;
-        flex: 1;
-      }
-      
-      .two {
-        align-content: center;
-        flex: 2;
-      }
-      
-      .noto-sans {
-        font-family: "Noto Sans", sans-serif;
-        font-optical-sizing: auto;
-        font-weight: 400;
-        font-style: normal;
-        font-variation-settings:
-        "wdth" 100;
-      }
-      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+      h3 { font-size: 1.5rem; }
+      h4 { opacity: .5; font-weight: 400; }
     </style>
   </head>
   <body>
     <div class="interface">
-      <div class="two"></div>
-      <div class="two">
+      <div>
         <h3>CYRILLIC FOR POLISH</h3>
         <h4>A Cyrillic Orthography for the Polish Language</h4>
       </div>
-      <div class="one"></div>
+      
       <div>
-        <p>Type or paste text below:</p>
-        <textarea rows="5" id="input" placeholder="Wszyscy ludzie rodzą się wolni i równi w swojej godności i prawach..." oninput="transcribe()"></textarea>
+        <!-- <p>Type or paste text below:</p> -->
+        <textarea rows="6" id="input" placeholder="Type here! Wpisz tutaj :)" oninput="transcribe()"></textarea>
+        <!-- Wszyscy ludzie rodzą się wolni i równi w swojej godności i prawach... -->
         <!-- W Szczebrzeszynie chrząszcz brzmi w trzcinie... -->
       </div>
-      <div class="one"></div>
+      
       <div>
-        <p>Result:</p>
-        <textarea rows="5" id="output"></textarea>
+        <!-- <p>Result:</p> -->
+        <textarea rows="6" id="output" readonly></textarea>
       </div>
-      <div class="one"></div>
-      <div class="two">
-        <input type="radio" name="orthography" value="russian" checked="">
-        Russian system
+      
+      <div class="options">
+        <label><input type="radio" name="orthography" value="ru" checked> Russian system</label>
         <br><br>
-        <input type="radio" name="orthography" value="ukrainian">
-        Ukrainian system
+        <label><input type="radio" name="orthography" value="ua"> Ukrainian system</label>
       </div>
-      <div class="two"></div>
-      <script>
-        const EXCEPTION_STEMS_RU = {
-          radi: "ради",
-          mafi: "мафи",
-          magi: "маги",
-          mani: "мани",
-          chemi: "хэми",
-          tarzan: "тарзан",
-          erzac: "эрзац",
-          murzasich: "мурзасих",
-          dies: "диз",
-          diab: "диаб",
-          // diab: "дъяб",
-          zamarza: "замарза",
-          mierzi: "мерзи",
-          podzamcz: "подзамч",
-          podzb: "подзб",
-          podzesp: "подзэсп",
-          podziem: "подзем",
-          podzwrot: "подзврот",
-          podziérzgn: "поддерьгн",
-          podzyg: "подзыг",
-          ludzk: "людск",
-        };
-        
-        const EXCEPTIONS_RU = Object.entries(EXCEPTION_STEMS_RU).map(([latin, cyrillic]) => ({
-          regex: new RegExp("^" + latin + "(.*)$"),
-          replace: (m, cfg) => cyrillic + (m[1] ? transliterateWord(m[1], cfg) : "")
-        }));
-        
-        const EXCEPTION_STEMS_UA = {
-          radi: "раді",
-          mafi: "мафі",
-          magi: "магі",
-          mani: "мані",
-          chemi: "хемі",
-          tarzan: "тарзан",
-          erzac: "ерзац",
-          murzasich: "мурзасіх",
-          dies: "диз",
-          // diab: "діаб",
-          zamarza: "замарза",
-          mierzi: "мєрзі",
-          podzamcz: "подзамч",
-          podzb: "подзб",
-          podzesp: "подзесп",
-          podziem: "подзєм",
-          podzwrot: "подзврот",
-          podziérzgn: "поддєрьґн",
-          podzyg: "подзиґ",
-          ludzk: "людск",
-        };
-        
-        const EXCEPTIONS_UA = Object.entries(EXCEPTION_STEMS_UA).map(([latin, cyrillic]) => ({
-          regex: new RegExp("^" + latin + "(.*)$"),
-          replace: (m, cfg) => cyrillic + (m[1] ? transliterateWord(m[1], cfg) : "")
-        }));
-        
-        const vowelMappingsHardRussian = {a:"а", e:"э", i:"и", y:"ы", o:"о", ó:"у", // ó:"у́", ó:"у̊",
-                                          u:"у", ą:"ѫ", ę:"ѧ"
-        };
-        const vowelMappingsSoftRussian = {a:"я", e:"е", i:"и", y:"и", o:"ё", ó:"ю", // ó:"ю́", ó:"ю̊",
-                                          u:"ю", ą:"ѭ", ę:"ѩ"
-        };
-        
-        const vowelMappingsHardUkrainian = {a:"а", ą:"ѫ", e:"е", ę:"ѧ", i:"і", y:"и", o:"о", ó:"у", // ó:"ӧ", ó:"о́",
-                                            u:"у"
-        };
-        const vowelMappingsSoftUkrainian = {a:"я", ą:"ѭ", e:"є", ę:"ѩ", i:"і", y:"і", o:"ьо", ó:"ю", // ó:"ьӧ", ó:"ьо́",
-                                            u:"ю"
-        };
-        
-        const consonantMappingsRussian = {
-          b:"б", c:"ц", ć:"т", d:"д", f:"ф", g:"г", h:"х", j:"й", k:"к", l:"л", ł:"л", m:"м", n:"н", ń:"н", p:"п", q:"к", r:"р", s:"с", ś:"с", t:"т", v:"в", w:"в", x:"кс", z:"з", ź:"з", ż:"ж",
-          ch:"х", cz:"ч", dz:"ѕ", dź:"д", rz:"р", sz:"ш",
-          śr:"ср", źr:"зр",
-          ph:"ф",
-          szcz:"щ",
-          czcz:"тщ",
-          ia:"я", ią:"ѭ", ie:"е", ię:"ѩ", io:"ё", iu:"ю", ió:"ю", // ió:"ю́", ió:"ю̊",
-          ja:"я", ją:"ѭ", je:"е", ję:"ѩ", ji:"и", jo:"ё", ju:"ю", jó:"ю", // jó:"ю́", jó:"ю̊",
-        };
-        
-        const consonantMappingsUkrainian = {
-          b:"б", c:"ц", ć:"т", d:"д", f:"ф", g:"ґ", h:"г", j:"й", k:"к", l:"л", ł:"л", m:"м", n:"н", ń:"н", p:"п", q:"к", r:"р", s:"с", ś:"с", t:"т", v:"в", w:"в", x:"кс", z:"з", ź:"з", ż:"ж",
-          ch:"х", cz:"ч", dz:"ѕ", dź:"д", rz:"р", sz:"ш",
-          śr:"ср", źr:"зр",
-          ph:"ф",
-          szcz:"щ",
-          czcz:"тщ",
-          ia:"я", ią:"ѭ", ie:"є", ię:"ѩ", ii:"ї", io:"ьо", iu:"ю", ió:"ю", // ió:"ьо́", ió:"ьӧ",
-          ja:"я", ją:"ѭ", je:"є", ję:"ѩ", ji:"і", jo:"ьо", ju:"ю", jó:"ю", // jó:"ьо́", jó:"ьӧ",
-        };
-        
-        const palatalizingConsonants = ["dź","l","rz","ć","ń","ś","ź","śr","źr"];
-        
-        const softVowels = ["ia","ią","ie","ię","io","ió","iu"];
-        
-        const specialPrevConsonants = ["c", "cz", "dz", "sz", "szcz", "ż", "czcz"];
-        
-        // List of dictionary forms that require a final ь
-        const addSoftSignWords = new Set([
-          "brew", "brzoskiew", "bukiew", "cerkiew", "chorągiew", "cietrzew", "czerw", "jątrew", "kotew", "krew", "marchew", "mątew", "nów", "rzodkiew", "wiećw", "wrocław", "zełw", "żełw", "żółw",
-          "drób", "gołąb", "głąb", "kiełb", "źreb",
-          "bluszcz", "dreszcz",
-          "czarnoziem", "osiem", "ośm", "siedem", "ziem",
-          "konop",
-          "brocz", "cyc", "kokosz", "mysz", "młodzież", "plesz", "pustosz", "rozkosz", "wesz", "łeż", "łącz", // not sure about these
-        ]);
-        
-        function getSelectedOrthography() {
-          const el = document.querySelector('input[name="orthography"]:checked');
-          return el ? el.value : "russian";
-        }
-        
-        function applyExceptions(wordLower, cfg, rules) {
-          // 1) regex rules (ordered)
-          for (const rule of rules) {
-            const match = wordLower.match(rule.regex);
-            if (match) {
-              // rule.replace can be a function that returns a mapped string
-              return rule.replace(match, cfg);
-            }
-          }
-        
-          return null; // no exception
-        }
-        
-        function transcribe() {
-          const orth = getSelectedOrthography();
-          const isRussian = orth === "russian";
-        
-          const vowelMappingsHard = (orth === "russian") ? vowelMappingsHardRussian : vowelMappingsHardUkrainian;
-          const vowelMappingsSoft = (orth === "russian") ? vowelMappingsSoftRussian : vowelMappingsSoftUkrainian;
-          const consonantMappings = (orth === "russian") ? consonantMappingsRussian : consonantMappingsUkrainian;
-          const EXCEPTIONS = (orth === "russian") ? EXCEPTIONS_RU : EXCEPTIONS_UA;
-        
-          const nonSoftSignFollowers = new Set([
-            ...Object.keys(vowelMappingsHard),
-            ...Object.keys(vowelMappingsSoft),
-            ...palatalizingConsonants,
-          ]);
-        
-          const inputEl = document.getElementById("input");
-          const outputEl = document.getElementById("output");
-          const text = inputEl.value;
-        
-          const tokens = text.match(/(\p{L}+|\P{L}+)/gu) || [];
-          let out = "";
-        
-          for (const tok of tokens) {
-            if (/^\p{L}+$/u.test(tok)) {
-              const lower = tok.toLowerCase();
-        
-              const cfg = {
-                vowelMappingsHard,
-                vowelMappingsSoft,
-                consonantMappings,
-                palatalizingConsonants,
-                nonSoftSignFollowers,
-                isRussian,
-                specialPrevConsonants
-              };
-        
-              const exceptionResult = applyExceptions(lower, cfg, EXCEPTIONS);
-              if (exceptionResult) {
-                out += matchWordCase(tok, exceptionResult);
-              } else {
-                out += transliterateWord(tok, cfg);
-              }
-            } else {
-              out += tok;
-            }
-        
-          }
-        
-          outputEl.value = out;
-        }
-        
-        function matchWordCase(original, mapped) {
-          if (original === original.toUpperCase()) return mapped.toUpperCase();
-          const title = original[0].toUpperCase() + original.slice(1).toLowerCase();
-          if (original === title) return mapped[0].toUpperCase() + mapped.slice(1);
-          return mapped;
-        }
-        
-        function matchCase(outputStr, originalChar) {
-          return (originalChar === originalChar.toUpperCase())
-            ? outputStr.toUpperCase()
-            : outputStr;
-        }
-        
-        function transliterateWord(word, cfg) {
-          const {
-            vowelMappingsHard,
-            vowelMappingsSoft,
-            consonantMappings,
-            palatalizingConsonants,
-            nonSoftSignFollowers,
-            isRussian,
-            specialPrevConsonants
-          } = cfg;
-        
-          let result = "";
-          let i = 0;
-          let prevCons = "";
-        
-          while (i < word.length) {
-            let matched = false;
-        
-            for (const length of [4,3,2,1]) {
-              const chunkOrig = word.slice(i, i + length);
-              const chunk = chunkOrig.toLowerCase();
-        
-              const nextChar = (i + length < word.length) ? word[i + length].toLowerCase() : "";
-              const nextTwo = word.slice(i + length, i + length + 2).toLowerCase();
-              const nextThree = word.slice(i + length, i + length + 3).toLowerCase();
-        
-              if (consonantMappings[chunk]) {
-                let mapped;
-        
-                if (chunk === "c" && nextChar === "i") {
-                  mapped = "т";
-                } else if (chunk === "dz" && nextChar === "i") {
-                  mapped = "д";
-        
-                } else if (chunk === "d" && softVowels.includes(nextTwo)) {
-                  mapped = (isRussian) ? "ды" : "ди"; // ди/ді?
-                } else if (chunk === "t" && softVowels.includes(nextTwo)) {
-                  mapped = (isRussian) ? "ты" : "ти"; // ти/ті?
-                } else if (chunk === "r" && softVowels.includes(nextTwo)) {
-                  mapped = (isRussian) ? "ры" : "ри"; // ри/рі?
-        
-                } else {
-                  mapped = consonantMappings[chunk];
-                }
-        
-                // Palatalization logic for ś, ź in clusters... and more ь insertion
-                if (chunk === "ś" || chunk === "ź") {
-                  if (i + length >= word.length) {
-                    // Word-final ś or ź → always add ь
-                    mapped += "ь";
-                  } else {
-                    const nextIsSoftVowel = ["i","j"].includes(nextChar);
-                    const nextFollowedBySoft = (nextTwo.length === 2 && ["i","j"].includes(nextTwo[1]));
-        
-                    // Check for special soft clusters after ś/ź: dź, dzi, rz
-                    let nextClusterIsSoft = false;
-                    const nextCluster = word.slice(i + length, i + length + 3).toLowerCase();
-                    if (
-                      nextCluster.startsWith("dź") ||
-                      nextCluster.startsWith("dzi") ||
-                      nextCluster.startsWith("rz")
-                    ) {
-                      nextClusterIsSoft = true;
-                    }
-        
-                    if (
-                      !nextIsSoftVowel &&
-                      !nonSoftSignFollowers.has(nextChar) &&
-                      !nextFollowedBySoft &&
-                      !nextClusterIsSoft
-                    ) {
-                      mapped += "ь";
-                    }
-                  }
-        
-                  result += matchCase(mapped, chunkOrig[0]);
-                  prevCons = chunk;
-                  i += length;
-                  matched = true;
-                  break;
-        
-                  if (
-                    nextChar && // there is a next character
-                    !["i","j"].includes(nextChar) && // next char is not a soft vowel
-                    !nonSoftSignFollowers.has(nextChar) && // and it's not in non-soft followers
-                    !(nextTwo.length === 2 && ["i","j"].includes(nextTwo[1])) && // next consonant followed by i/j
-                    !nextClusterIsSoft // not part of a soft cluster
-                  ) {
-                    mapped += "ь";
-                  }
-                } else if (palatalizingConsonants.includes(chunk)) {
-                  // Normal palatalization logic
-                  if (!nonSoftSignFollowers.has(nextChar)) {
-                    mapped += "ь";
-                  }
-                }
-        
-                if (["ł","n","s","z"].includes(chunk) && nextChar === "j") {
-                  mapped += "ъ";
-                }
-        
-                result += matchCase(mapped, chunkOrig[0]);
-                prevCons = chunk;
-                i += length;
-                matched = true;
-                break;
-              }
-            }
-        
-            if (matched) continue;
-        
-            const originalChar = word[i];
-            const current = originalChar.toLowerCase();
-        
-            if (vowelMappingsHard[current]) {
-              let mapped;
-        
-              if (
-                prevCons &&
-                palatalizingConsonants.includes(prevCons)
-              ) {
-                mapped = vowelMappingsSoft[current];
-              } else if (
-                isRussian &&  // apply this only in Russian mode
-                ["e", "i", "y"].includes(current) &&
-                specialPrevConsonants.includes(prevCons)
-              ) {
-                mapped = vowelMappingsSoft[current];
-              } else {
-                mapped = vowelMappingsHard[current];
-              }
-        
-              result += matchCase(mapped, originalChar);
-              prevCons = "";
-              i += 1;
-              continue;
-            }
-        
-            result += originalChar;
-            prevCons = "";
-            i += 1;
-          }
-        
-          // Add final soft sign
-          if (addSoftSignWords.has(word.toLowerCase())) {
-            const lastChar = word[word.length - 1];
-            if (lastChar === lastChar.toUpperCase()) {
-              result += "Ь";
-            } else {
-              result += "ь";
-            }
-          }
-        
-          return result;
-        }
-        document.querySelectorAll('input[name="orthography"]').forEach(r => {
-          r.addEventListener('change', transcribe);
-        });
-      </script>
     </div>
+    <script>
+      const SYSTEMS = {
+        ru: {
+          isRussian: true,
+          vowelsHard: { a:"а", e:"э", i:"и", y:"ы", o:"о", ó:"у", u:"у", ą:"ѫ", ę:"ѧ" },
+          vowelsSoft: { a:"я", e:"е", i:"и", y:"и", o:"ё", ó:"ю", u:"ю", ą:"ѭ", ę:"ѩ" },
+          consonants: {
+            b:"б", c:"ц", ć:"т", d:"д", f:"ф", g:"г", h:"х", j:"й", k:"к", l:"л", ł:"л", m:"м", n:"н", ń:"н", p:"п", q:"к", r:"р", s:"с", ś:"с", t:"т", v:"в", w:"в", x:"кс", z:"з", ź:"з", ż:"ж",
+            ch:"х", cz:"ч", dz:"ѕ", dź:"д", rz:"р", sz:"ш", śr:"ср", źr:"зр", ph:"ф", szcz:"щ", czcz:"тщ",
+            ia:"я", ią:"ѭ", ie:"е", ię:"ѩ", io:"ё", iu:"ю", ió:"ю", ja:"я", ją:"ѭ", je:"е", ję:"ѩ", ji:"и", jo:"ё", ju:"ю", jó:"ю"
+          },
+          exceptions: {
+            radi:"ради", mafi:"мафи", magi:"маги", mani:"мани", chemi:"хэми", tarzan:"тарзан", erzac:"эрзац", 
+            murzasich:"мурзасих", dies:"диз", diab:"диаб", zamarza:"замарза", mierzi:"мерзи", podzamcz:"подзамч", 
+            podzb:"подзб", podzesp:"подзэсп", podziem:"подзем", podzwrot:"подзврот", podziérzgn:"поддерьгн", 
+            podzyg:"подзыг", ludzk:"людск"
+          }
+        },
+        ua: {
+          isRussian: false,
+          vowelsHard: { a:"а", ą:"ѫ", e:"е", ę:"ѧ", i:"і", y:"и", o:"о", ó:"у", u:"у" },
+          vowelsSoft: { a:"я", ą:"ѭ", e:"є", ę:"ѩ", i:"і", y:"і", o:"ьо", ó:"ю", u:"ю" },
+          consonants: {
+            b:"б", c:"ц", ć:"т", d:"д", f:"ф", g:"ґ", h:"г", j:"й", k:"к", l:"л", ł:"л", m:"м", n:"н", ń:"н", p:"п", q:"к", r:"р", s:"с", ś:"с", t:"т", v:"в", w:"в", x:"кс", z:"з", ź:"з", ż:"ж",
+            ch:"х", cz:"ч", dz:"ѕ", dź:"д", rz:"р", sz:"ш", śr:"ср", źr:"зр", ph:"ф", szcz:"щ", czcz:"тщ",
+            ia:"я", ią:"ѭ", ie:"є", ię:"ѩ", ii:"ї", io:"ьо", iu:"ю", ió:"ю", ja:"я", ją:"ѭ", je:"є", ję:"ѩ", ji:"і", jo:"ьо", ju:"ю", jó:"ю"
+          },
+          exceptions: {
+            radi:"раді", mafi:"мафі", magi:"магі", mani:"мані", chemi:"хемі", tarzan:"тарзан", erzac:"ерзац", 
+            murzasich:"мурзасіх", dies:"диз", zamarza:"замарза", mierzi:"мєрзі", podzamcz:"подзамч", 
+            podzb:"подзб", podzesp:"подзесп", podziem:"подзєм", podzwrot:"подзврот", podziérzgn:"поддєрьґн", 
+            podzyg:"подзиґ", ludzk:"людск"
+          }
+        }
+      };
+
+      const PALATALIZING = new Set(["dź","l","rz","ć","ń","ś","ź","śr","źr"]);
+      const SOFT_VOWELS = new Set(["ia","ią","ie","ię","io","ió","iu"]);
+      const SPECIAL_PREV = new Set(["c", "cz", "dz", "sz", "szcz", "ż", "czcz"]);
+      const SOFT_SIGN_WORDS = new Set([
+        "brew", "brzoskiew", "bukiew", "cerkiew", "chorągiew", "cietrzew", "czerw", "jątrew", "kotew", "krew", "marchew", "mątew", "nów", "rzodkiew", "wiećw", "wrocław", "zełw", "żełw", "żółw",
+        "drób", "gołąb", "głąb", "kiełb", "źreb", "bluszcz", "dreszcz", "czarnoziem", "osiem", "ośm", "siedem", "ziem", "konop",
+        "brocz", "cyc", "kokosz", "mysz", "młodzież", "plesz", "pustosz", "rozkosz", "wesz", "łeż", "łącz"
+      ]);
+
+      for (const key in SYSTEMS) {
+        SYSTEMS[key].compiledExceptions = Object.entries(SYSTEMS[key].exceptions).map(([latin, cyrillic]) => ({
+          regex: new RegExp("^" + latin + "(.*)$"),
+          cyrillic
+        }));
+      }
+
+      function applyExceptions(wordLower, cfg) {
+        for (const { regex, cyrillic } of cfg.compiledExceptions) {
+          const match = wordLower.match(regex);
+          if (match) {
+            return cyrillic + (match[1] ? transliterateWord(match[1], cfg) : "");
+          }
+        }
+        return null;
+      }
+
+      function handleCasing(original, mapped) {
+        if (original === original.toUpperCase()) return mapped.toUpperCase();
+        if (original[0] === original[0].toUpperCase()) return mapped[0].toUpperCase() + mapped.slice(1);
+        return mapped;
+      }
+
+      function transcribe() {
+        const selected = document.querySelector('input[name="orthography"]:checked')?.value || "ru";
+        const cfg = SYSTEMS[selected];
+        
+        cfg.nonSoftSignFollowers = new Set([
+          ...Object.keys(cfg.vowelsHard),
+          ...Object.keys(cfg.vowelsSoft),
+          ...PALATALIZING,
+        ]);
+
+        const text = document.getElementById("input").value;
+        const tokens = text.match(/(\p{L}+|\P{L}+)/gu) || [];
+        
+        const out = tokens.map(tok => {
+          if (/^\p{L}+$/u.test(tok)) {
+            const lower = tok.toLowerCase();
+            const exceptionResult = applyExceptions(lower, cfg);
+            return handleCasing(tok, exceptionResult || transliterateWord(lower, cfg));
+          }
+          return tok;
+        }).join("");
+
+        document.getElementById("output").value = out;
+      }
+
+      function transliterateWord(wordLower, cfg) {
+        let result = "";
+        let i = 0;
+        let prevCons = "";
+
+        while (i < wordLower.length) {
+          let matched = false;
+
+          for (const length of [4, 3, 2, 1]) {
+            if (i + length > wordLower.length) continue;
+            const chunk = wordLower.slice(i, i + length);
+
+            if (cfg.consonants[chunk]) {
+              let mapped = cfg.consonants[chunk];
+              const nextChar = wordLower[i + length] || "";
+              const nextTwo = wordLower.slice(i + length, i + length + 2);
+
+              if (chunk === "c" && nextChar === "i") mapped = "т";
+              else if (chunk === "dz" && nextChar === "i") mapped = "д";
+              else if (chunk === "d" && SOFT_VOWELS.has(nextTwo)) mapped = cfg.isRussian ? "ды" : "ди";
+              else if (chunk === "t" && SOFT_VOWELS.has(nextTwo)) mapped = cfg.isRussian ? "ты" : "ти";
+              else if (chunk === "r" && SOFT_VOWELS.has(nextTwo)) mapped = cfg.isRussian ? "ры" : "ри";
+
+              if (chunk === "ś" || chunk === "ź") {
+                const nextCluster3 = wordLower.slice(i + length, i + length + 3);
+                const nextClusterIsSoft = nextCluster3.startsWith("dź") || nextCluster3.startsWith("dzi") || nextCluster3.startsWith("rz");
+                const nextFollowedBySoft = ["i", "j"].includes(nextTwo[1]);
+
+                if (i + length >= wordLower.length || (
+                  !["i", "j"].includes(nextChar) &&
+                  !cfg.nonSoftSignFollowers.has(nextChar) &&
+                  !nextFollowedBySoft &&
+                  !nextClusterIsSoft
+                )) {
+                  mapped += "ь";
+                }
+              } else if (PALATALIZING.has(chunk) && !cfg.nonSoftSignFollowers.has(nextChar)) {
+                mapped += "ь";
+              }
+
+              if (["ł", "n", "s", "z"].includes(chunk) && nextChar === "j") {
+                mapped += "ъ";
+              }
+
+              result += mapped;
+              prevCons = chunk;
+              i += length;
+              matched = true;
+              break;
+            }
+          }
+
+          if (matched) continue;
+
+          const current = wordLower[i];
+          if (cfg.vowelsHard[current]) {
+            if (prevCons && PALATALIZING.has(prevCons)) {
+              result += cfg.vowelsSoft[current];
+            } else if (cfg.isRussian && ["e", "i", "y"].includes(current) && SPECIAL_PREV.has(prevCons)) {
+              result += cfg.vowelsSoft[current];
+            } else {
+              result += cfg.vowelsHard[current];
+            }
+          } else {
+            result += current;
+          }
+          prevCons = "";
+          i += 1;
+        }
+
+        if (SOFT_SIGN_WORDS.has(wordLower)) {
+          result += "ь";
+        }
+
+        return result;
+      }
+
+      document.querySelectorAll('input[name="orthography"]').forEach(r => {
+        r.addEventListener('change', transcribe);
+      });
+    </script>
   </body>
 </html>
