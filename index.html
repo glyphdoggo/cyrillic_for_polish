@@ -67,7 +67,7 @@
        background: #2C2131;
        color: #fed;
        border: 2px solid #fed;
-       width: 120px;
+       width: 150px;
        height: 40px;
        border-radius: 10px;
        cursor: pointer;
@@ -101,7 +101,7 @@
       </div>
       
       <div class="buttons">
-        <input id="ortho-toggle" class="btn" type="button" title="Toggle orthographic mode" data-mode="ru" value="Russian" onclick="toggleMode()">
+        <input id="ortho-toggle" class="btn" type="button" title="Toggle orthographic system" data-mode="ru" value="Russian mode" onclick="toggleMode()">
         <input id="sample-btn" class="btn" type="button" title="Load sample text" value="Sample text" onclick="loadSample()">
       </div>
     </div>
@@ -137,10 +137,9 @@
             ia:"я", ią:"ѭ", ie:"е", ię:"ѩ", io:"ё", iu:"ю", ió:"ю", ja:"я", ją:"ѭ", je:"е", ję:"ѩ", ji:"и", jo:"ё", ju:"ю", jó:"ю"
           },
           exceptions: {
-            radi:"ради", mafi:"мафи", magi:"маги", mani:"мани", chemi:"хэми", tarzan:"тарзан", erzac:"эрзац", 
-            murzasich:"мурзасих", dies:"диз", diab:"диаб", zamarza:"замарза", mierzi:"мерзи", podzamcz:"подзамч", 
-            podzb:"подзб", podzesp:"подзэсп", podziem:"подзем", podzwrot:"подзврот", podziérzgn:"поддерьгн", 
-            podzyg:"подзыг", ludzk:"людск"
+            radi:"ради", mafi:"мафи", magi:"маги", mani:"мани", chemi:"хэми", dies:"диз", diab:"диаб",
+            tarzan:"тарзан", erzac:"эрзац", murzasich:"мурзасих", zamarza:"замарза", mierzi:"мерзи",
+            podzamcz:"подзамч", podzb:"подзб", podzesp:"подзэсп", podziem:"подзем", podzwrot:"подзврот", podziérzgn:"поддерьгн", podzyg:"подзыг", ludzk:"людск"
           }
         },
         ua: {
@@ -153,10 +152,9 @@
             ia:"я", ią:"ѭ", ie:"є", ię:"ѩ", ii:"ї", io:"ьо", iu:"ю", ió:"ю", ja:"я", ją:"ѭ", je:"є", ję:"ѩ", ji:"і", jo:"ьо", ju:"ю", jó:"ю"
           },
           exceptions: {
-            radi:"раді", mafi:"мафі", magi:"магі", mani:"мані", chemi:"хемі", tarzan:"тарзан", erzac:"ерзац", 
-            murzasich:"мурзасіх", dies:"диз", zamarza:"замарза", mierzi:"мєрзі", podzamcz:"подзамч", 
-            podzb:"подзб", podzesp:"подзесп", podziem:"подзєм", podzwrot:"подзврот", podziérzgn:"поддєрьґн", 
-            podzyg:"подзиґ", ludzk:"людск"
+            radi:"раді", mafi:"мафі", magi:"магі", mani:"мані", chemi:"хемі", dies:"диз",
+            tarzan:"тарзан", erzac:"ерзац", murzasich:"мурзасіх", zamarza:"замарза", mierzi:"мєрзі",
+            podzamcz:"подзамч", podzb:"подзб", podzesp:"подзесп", podziem:"подзєм", podzwrot:"подзврот", podziérzgn:"поддєрьґн", podzyg:"подзиґ", ludzk:"людск"
           }
         }
       };
@@ -192,7 +190,7 @@
         
         toggle.setAttribute("data-mode", newMode);
         
-        toggle.value = (newMode === "ua") ? "Ukrainian" : "Russian";
+        toggle.value = (newMode === "ua") ? "Ukrainian mode" : "Russian mode";
         
         transcribe();
       }
