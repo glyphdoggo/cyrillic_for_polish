@@ -41,8 +41,7 @@
         background-color: #fed;
         color: #2C2131;
         width: 100%;
-        padding: 16px;
-        font-size: 1rem;
+        padding: 20px;
         line-height: 1.25;
         border-radius: 10px;
         border: none;
@@ -54,16 +53,36 @@
       .interface {
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 30px;
       }
 
-      .options {
-        margin-top: 10px;
-        font-size: 1.1rem;
+      .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 30px;
       }
-      
-      h3 { font-size: 1.5rem; }
-      h4 { opacity: .5; font-weight: 400; }
+
+      .btn {
+       background: #2C2131;
+       color: #fed;
+       border: 2px solid #fed;
+       width: 120px;
+       height: 40px;
+       border-radius: 10px;
+       cursor: pointer;
+       transition: all .3s ease;
+       font-size: 16px;
+      }
+
+      .btn:hover {
+       background: #4A3B52;
+       color: #fff;
+       border-color: #fff;
+      }
+
+      h3 {font-size: 22px}
+      h4 {opacity: .5; font-weight: 100; font-style: italic; font-family: sans-serif}
     </style>
   </head>
   <body>
@@ -74,24 +93,39 @@
       </div>
       
       <div>
-        <!-- <p>Type or paste text below:</p> -->
-        <textarea rows="6" id="input" placeholder="Type here! Wpisz tutaj :)" oninput="transcribe()"></textarea>
-        <!-- Wszyscy ludzie rodzą się wolni i równi w swojej godności i prawach... -->
-        <!-- W Szczebrzeszynie chrząszcz brzmi w trzcinie... -->
+        <textarea rows="5" id="input" placeholder="Type here! Wpisz tutaj :)" oninput="transcribe()"></textarea>
       </div>
       
       <div>
-        <!-- <p>Result:</p> -->
-        <textarea rows="6" id="output" readonly></textarea>
+        <textarea rows="5" id="output" readonly></textarea>
       </div>
       
-      <div class="options">
-        <label><input type="radio" name="orthography" value="ru" checked> Russian system</label>
-        <br><br>
-        <label><input type="radio" name="orthography" value="ua"> Ukrainian system</label>
+      <div class="buttons">
+        <input id="ortho-toggle" class="btn" type="button" title="Toggle orthographic mode" data-mode="ru" value="Russian" onclick="toggleMode()">
+        <input id="sample-btn" class="btn" type="button" title="Load sample text" value="Sample text" onclick="loadSample()">
       </div>
     </div>
     <script>
+      const SAMPLES = [
+        "Wszyscy ludzie rodzą się wolni i równi w swej godności i w swych prawach. Są oni obdarzeni rozumem i sumieniem i powinni postępować wobec innych w duchu braterstwa.\n\nKażdy człowiek posiada wszystkie prawa i wolności zawarte w niniejszej Deklaracji, bez względu na jakiekolwiek różnice rasy, koloru skóry, płci, języka, religii, poglądów politycznych lub innych przekonań, narodowości, pochodzenia społecznego, majątku, urodzenia lub jakiekolwiek inne różnice. Nie wolno ponadto czynić żadnej różnicy w zależności od statusu politycznego, prawnego lub międzynarodowego kraju lub terytorium, do którego dana osoba przynależy, bez względu na to, czy jest on niepodległy, powierniczy, autonomiczny lub poddany innym ograniczeniom suwerenności.\n\nKażdy człowiek ma prawo do życia, wolności i bezpieczeństwa swej osoby.",
+        "Litwo, Ojczyzno moja! ty jesteś jak zdrowie;\nIle cię trzeba cenić, ten tylko się dowie,\nKto cię stracił. Dziś piękność twą w całej ozdobie\nWidzę i opisuję, bo tęsknię po tobie.\n\nPanno święta, co Jasnej bronisz Częstochowy\nI w Ostrej świecisz Bramie! Ty, co gród zamkowy\nNowogródzki ochraniasz z jego wiernym ludem!\nJak mnie dziecko do zdrowia powróciłaś cudem\n(— Gdy od płaczącej matki, pod Twoją opiekę\nOfiarowany martwą podniosłem powiekę;\nI zaraz mogłem pieszo, do Twych świątyń progu\nIść za wrócone życie podziękować Bogu —)\nTak nas powrócisz cudem na Ojczyzny łono!...\nTymczasem, przenoś moją duszę utęsknioną\nDo tych pagórków leśnych, do tych łąk zielonych,\nSzeroko nad błękitnym Niemnem rozciągnionych;\nDo tych pól malowanych zbożem rozmaitem,\nWyzłacanych pszenicą, posrebrzanych żytem;\nGdzie bursztynowy świerzop, gryka jak śnieg biała,\nGdzie panieńskim rumieńcem dzięcielina pała,\nA wszystko przepasane jakby wstęgą, miedzą\nZieloną, na niej zrzadka ciche grusze siedzą.",
+        "Północny Wiatr i Słońce pokłóciły się o to, który z nich jest silniejszy. Podczas gdy dyskutowali z wielkim żarem i wrzawą, drogą przeszedł Podróżnik owinięty płaszczem.\n\t— Umówmy się — rzekło Słońce — że ten z nas jest silniejszy, kto zedrze z Wędrowca płaszcz.\n\t— Dobrze — warknął Północny Wiatr i natychmiast posłał na człowieka zimny, wyjący podmuch.\n\tPrzy pierwszym natarciu wiatru końce płaszcza owinęły się wokół ciała mężczyzny. Natychmiast więc owinął go szczelnie wokół siebie, a im mocniej wiał Wiatr, tym mocniej trzymał płaszcz.\n\tPółnocny Wiatr szarpał ze złością płaszcz, ale wszystkie jego wysiłki poszły na marne. Wtedy zaczęło Słońce przejęło inicjatywę w działaniu.\n\tZ początku jego promienie były łagodne, a w przyjemnym cieple po przenikliwym chłodzie Północnego Wiatru Podróżnik rozpiął płaszcz i zwisał mu on luźno z ramion.\n\tPromienie słoneczne stawały się coraz cieplejsze.\n\tMężczyzna zdjął czapkę i otarł czoło. W końcu zrobiło mu się tak gorąco, że zdjął płaszcz i aby uciec przed palącym Słońcem, rzucił się w mile widziany cień przydrożnego drzewa.",
+        "W Szczebrzeszynie chrząszcz brzmi w trzcinie\nI Szczebrzeszyn z tego słynie.\n\nWół go pyta: „Panie chrząszczu,\nPo cóż pan tak brzęczy w gąszczu?”\n\n„Jak to — po co? To jest praca,\nKażda praca się opłaca”.\n\n„A cóż za to pan dostaje?”\n\n„Też pytanie! Wszystkie gaje,\nWszystkie trzciny po wsze czasy,\nŁąki, pola oraz lasy,\nNawet rzeczki, nawet zdroje,\nWszystko to jest właśnie moje!”\n\nWół pomyślał: „Znakomicie,\nTeż rozpocznę takie życie”.\nWrócił do dom i wesoło\nZaczął brzęczeć pod stodołą\nPo wolemu, tęgim basem.\nA tu Maciek szedł tymczasem.\n\nJak nie wrzaśnie: „Cóż to znaczy?\nCzemu to się wół próżniaczy?!”\n„Jak to? Czyż ja nic nie robię?\nPrzecież właśnie brzęczę sobie!”\n\n„Ja ci tu pobrzęczę, wole,\nDosyć tego! Jazda w pole!”\n\nI dał taką mu robotę,\nŻe się wół oblewał potem.\n\nPo robocie pobiegł w gąszcze.\n„Już ja to na chrząszczu pomszczę!”\n\nLecz nie zastał chrząszcza w trzcinie,\nBo chrząszcz właśnie brzęczał w Pszczynie."
+      ];
+      
+      let sampleIndex = 0;
+
+      function loadSample() {
+        const inputArea = document.getElementById("input");
+        
+        inputArea.value = "";
+        
+        inputArea.value = SAMPLES[sampleIndex];
+        sampleIndex = (sampleIndex + 1) % SAMPLES.length;
+        
+        transcribe();
+      }
+
       const SYSTEMS = {
         ru: {
           isRussian: true,
@@ -131,9 +165,7 @@
       const SOFT_VOWELS = new Set(["ia","ią","ie","ię","io","ió","iu"]);
       const SPECIAL_PREV = new Set(["c", "cz", "dz", "sz", "szcz", "ż", "czcz"]);
       const SOFT_SIGN_WORDS = new Set([
-        "brew", "brzoskiew", "bukiew", "cerkiew", "chorągiew", "cietrzew", "czerw", "jątrew", "kotew", "krew", "marchew", "mątew", "nów", "rzodkiew", "wiećw", "wrocław", "zełw", "żełw", "żółw",
-        "drób", "gołąb", "głąb", "kiełb", "źreb", "bluszcz", "dreszcz", "czarnoziem", "osiem", "ośm", "siedem", "ziem", "konop",
-        "brocz", "cyc", "kokosz", "mysz", "młodzież", "plesz", "pustosz", "rozkosz", "wesz", "łeż", "łącz"
+        "brew", "brzoskiew", "bukiew", "cerkiew", "chorągiew", "cietrzew", "czerw", "jątrew", "kotew", "krew", "marchew", "mątew", "nów", "rzodkiew", "wiećw", "wrocław", "zełw", "żełw", "żółw", "drób", "gołąb", "głąb", "kiełb", "źreb", "bluszcz", "dreszcz", "czarnoziem", "osiem", "ośm", "siedem", "ziem", "konop", "brocz", "cyc", "kokosz", "mysz", "młodzież", "plesz", "pustosz", "rozkosz", "wesz", "łeż", "łącz"
       ]);
 
       for (const key in SYSTEMS) {
@@ -153,28 +185,21 @@
         return null;
       }
 
-      function handleCasing(original, mapped) {
-        if (original === original.toUpperCase()) return mapped.toUpperCase();
-        if (original === original.toLowerCase()) return mapped.toLowerCase();
-
-        let result = "";
-        const scale = original.length / mapped.length;
-
-        for (let i = 0; i < mapped.length; i++) {
-          const origIndex = Math.min(Math.floor(i * scale), original.length - 1);
-          const origChar = original[origIndex];
-
-          if (origChar === origChar.toUpperCase() && origChar !== origChar.toLowerCase()) {
-            result += mapped[i].toUpperCase();
-          } else {
-            result += mapped[i].toLowerCase();
-          }
-        }
-        return result;
+      function toggleMode() {
+        const toggle = document.getElementById("ortho-toggle");
+        const currentMode = toggle.getAttribute("data-mode");
+        const newMode = (currentMode === "ru") ? "ua" : "ru";
+        
+        toggle.setAttribute("data-mode", newMode);
+        
+        toggle.value = (newMode === "ua") ? "Ukrainian" : "Russian";
+        
+        transcribe();
       }
 
       function transcribe() {
-        const selected = document.querySelector('input[name="orthography"]:checked')?.value || "ru";
+        const toggle = document.getElementById("ortho-toggle");
+        const selected = toggle.getAttribute("data-mode") || "ru";
         const cfg = SYSTEMS[selected];
         
         cfg.nonSoftSignFollowers = new Set([
@@ -190,7 +215,14 @@
           if (/^\p{L}+$/u.test(tok)) {
             const lower = tok.toLowerCase();
             const exceptionResult = applyExceptions(lower, cfg);
-            return handleCasing(tok, exceptionResult || transliterateWord(lower, cfg));
+            
+            if (exceptionResult) {
+              if (tok === tok.toUpperCase()) return exceptionResult.toUpperCase();
+              if (tok[0] === tok[0].toUpperCase()) return exceptionResult[0].toUpperCase() + exceptionResult.slice(1);
+              return exceptionResult;
+            }
+            
+            return transliterateWord(tok, cfg);
           }
           return tok;
         }).join("");
@@ -198,35 +230,48 @@
         document.getElementById("output").value = out;
       }
 
-      function transliterateWord(wordLower, cfg) {
+      document.getElementById("input").addEventListener('input', transcribe);
+
+      function transliterateWord(word, cfg) {
+        const wordLower = word.toLowerCase();
         let result = "";
         let i = 0;
         let prevCons = "";
 
-        while (i < wordLower.length) {
+        function matchSliceCasing(sourceSlice, targetString) {
+          if (sourceSlice === sourceSlice.toUpperCase()) return targetString.toUpperCase();
+          if (sourceSlice === sourceSlice.toLowerCase()) return targetString.toLowerCase();
+          if (sourceSlice[0] === sourceSlice[0].toUpperCase()) {
+            return targetString[0].toUpperCase() + targetString.slice(1).toLowerCase();
+          }
+          return targetString.toLowerCase();
+        }
+
+        while (i < word.length) {
           let matched = false;
 
           for (const length of [4, 3, 2, 1]) {
-            if (i + length > wordLower.length) continue;
-            const chunk = wordLower.slice(i, i + length);
+            if (i + length > word.length) continue;
+            const chunkLower = wordLower.slice(i, i + length);
+            const chunkOriginal = word.slice(i, i + length);
 
-            if (cfg.consonants[chunk]) {
-              let mapped = cfg.consonants[chunk];
+            if (cfg.consonants[chunkLower]) {
+              let mapped = cfg.consonants[chunkLower];
               const nextChar = wordLower[i + length] || "";
               const nextTwo = wordLower.slice(i + length, i + length + 2);
 
-              if (chunk === "c" && nextChar === "i") mapped = "т";
-              else if (chunk === "dz" && nextChar === "i") mapped = "д";
-              else if (chunk === "d" && SOFT_VOWELS.has(nextTwo)) mapped = cfg.isRussian ? "ды" : "ди";
-              else if (chunk === "t" && SOFT_VOWELS.has(nextTwo)) mapped = cfg.isRussian ? "ты" : "ти";
-              else if (chunk === "r" && SOFT_VOWELS.has(nextTwo)) mapped = cfg.isRussian ? "ры" : "ри";
+              if (chunkLower === "c" && nextChar === "i") mapped = "т";
+              else if (chunkLower === "dz" && nextChar === "i") mapped = "д";
+              else if (chunkLower === "d" && SOFT_VOWELS.has(nextTwo)) mapped = cfg.isRussian ? "ды" : "ди";
+              else if (chunkLower === "t" && SOFT_VOWELS.has(nextTwo)) mapped = cfg.isRussian ? "ты" : "ти";
+              else if (chunkLower === "r" && SOFT_VOWELS.has(nextTwo)) mapped = cfg.isRussian ? "ры" : "ри";
 
-              if (chunk === "ś" || chunk === "ź") {
+              if (chunkLower === "ś" || chunkLower === "ź") {
                 const nextCluster3 = wordLower.slice(i + length, i + length + 3);
                 const nextClusterIsSoft = nextCluster3.startsWith("dź") || nextCluster3.startsWith("dzi") || nextCluster3.startsWith("rz");
                 const nextFollowedBySoft = ["i", "j"].includes(nextTwo[1]);
 
-                if (i + length >= wordLower.length || (
+                if (i + length >= word.length || (
                   !["i", "j"].includes(nextChar) &&
                   !cfg.nonSoftSignFollowers.has(nextChar) &&
                   !nextFollowedBySoft &&
@@ -234,16 +279,16 @@
                 )) {
                   mapped += "ь";
                 }
-              } else if (PALATALIZING.has(chunk) && !cfg.nonSoftSignFollowers.has(nextChar)) {
+              } else if (PALATALIZING.has(chunkLower) && !cfg.nonSoftSignFollowers.has(nextChar)) {
                 mapped += "ь";
               }
 
-              if (["ł", "n", "s", "z"].includes(chunk) && nextChar === "j") {
+              if (["ł", "n", "s", "z"].includes(chunkLower) && nextChar === "j") {
                 mapped += "ъ";
               }
 
-              result += mapped;
-              prevCons = chunk;
+              result += matchSliceCasing(chunkOriginal, mapped);
+              prevCons = chunkLower;
               i += length;
               matched = true;
               break;
@@ -252,32 +297,35 @@
 
           if (matched) continue;
 
-          const current = wordLower[i];
-          if (cfg.vowelsHard[current]) {
+          const currentLower = wordLower[i];
+          const currentOriginal = word[i];
+
+          if (cfg.vowelsHard[currentLower]) {
+            let mappedVowel;
             if (prevCons && PALATALIZING.has(prevCons)) {
-              result += cfg.vowelsSoft[current];
-            } else if (cfg.isRussian && ["e", "i", "y"].includes(current) && SPECIAL_PREV.has(prevCons)) {
-              result += cfg.vowelsSoft[current];
+              mappedVowel = cfg.vowelsSoft[currentLower];
+            } else if (cfg.isRussian && ["e", "i", "y"].includes(currentLower) && SPECIAL_PREV.has(prevCons)) {
+              mappedVowel = cfg.vowelsSoft[currentLower];
             } else {
-              result += cfg.vowelsHard[current];
+              mappedVowel = cfg.vowelsHard[currentLower];
             }
+            result += matchSliceCasing(currentOriginal, mappedVowel);
           } else {
-            result += current;
+            result += currentOriginal;
           }
           prevCons = "";
           i += 1;
         }
 
         if (SOFT_SIGN_WORDS.has(wordLower)) {
-          result += "ь";
+          const lastChar = word[word.length - 1];
+          result += (lastChar === lastChar.toUpperCase()) ? "Ь" : "ь";
         }
 
         return result;
       }
 
-      document.querySelectorAll('input[name="orthography"]').forEach(r => {
-        r.addEventListener('change', transcribe);
-      });
+      document.getElementById("ortho-toggle").addEventListener('change', transcribe);
     </script>
   </body>
 </html>
