@@ -47,7 +47,7 @@
         border: none;
         box-sizing: border-box;
         resize: vertical;
-        max-width: 80%;
+        max-width: 60%;
       }
 
       .interface {
@@ -81,8 +81,8 @@
        border-color: #fff;
       }
 
-      h3 {font-size: 22px}
-      h4 {opacity: .5; font-weight: 400; font-style: italic}
+      h3 { font-size: 22px }
+      h4 { opacity: .5; font-weight: 400; font-style: italic }
     </style>
   </head>
   <body>
@@ -129,17 +129,18 @@
       const SYSTEMS = {
         ru: {
           isRussian: true,
-          vowelsHard: { a:"а", e:"э", i:"и", y:"ы", o:"о", ó:"у", u:"у", ą:"ѫ", ę:"ѧ" },
-          vowelsSoft: { a:"я", e:"е", i:"и", y:"и", o:"ё", ó:"ю", u:"ю", ą:"ѭ", ę:"ѩ" },
+          vowelsHard: { a:"а", ą:"ѫ", e:"э", ę:"ѧ", i:"и", y:"ы", o:"о", ó:"у", u:"у" },
+          vowelsSoft: { a:"я", ą:"ѭ", e:"е", ę:"ѩ", i:"и", y:"и", o:"ё", ó:"ю", u:"ю" },
           consonants: {
             b:"б", c:"ц", ć:"т", d:"д", f:"ф", g:"г", h:"х", j:"й", k:"к", l:"л", ł:"л", m:"м", n:"н", ń:"н", p:"п", q:"к", r:"р", s:"с", ś:"с", t:"т", v:"в", w:"в", x:"кс", z:"з", ź:"з", ż:"ж",
             ch:"х", cz:"ч", dz:"ѕ", dź:"д", rz:"р", sz:"ш", śr:"ср", źr:"зр", ph:"ф", szcz:"щ", czcz:"тщ",
             ia:"я", ią:"ѭ", ie:"е", ię:"ѩ", io:"ё", iu:"ю", ió:"ю", ja:"я", ją:"ѭ", je:"е", ję:"ѩ", ji:"и", jo:"ё", ju:"ю", jó:"ю"
           },
           exceptions: {
-            radi:"ради", mafi:"мафи", magi:"маги", mani:"мани", chemi:"хэми", dies:"диз", diab:"диаб",
+            mafi:"мафи", magi:"маги", mani:"мани", mari:"мари", chemi:"хэми", dies:"диз",
             tarzan:"тарзан", erzac:"эрзац", murzasich:"мурзасих", zamarza:"замарза", mierzi:"мерзи",
-            podzamcz:"подзамч", podzb:"подзб", podzesp:"подзэсп", podziem:"подзем", podzwrot:"подзврот", podziérzgn:"поддерьгн", podzyg:"подзыг", ludzk:"людск"
+            podzamcz:"подзамч", podzb:"подзб", podzesp:"подзэсп", podziem:"подзем", podzwrot:"подзврот", podziérzgn:"поддерьгн", podzyg:"подзыг", ludzk:"людск",
+            mln: "млн"
           }
         },
         ua: {
@@ -149,12 +150,13 @@
           consonants: {
             b:"б", c:"ц", ć:"т", d:"д", f:"ф", g:"ґ", h:"г", j:"й", k:"к", l:"л", ł:"л", m:"м", n:"н", ń:"н", p:"п", q:"к", r:"р", s:"с", ś:"с", t:"т", v:"в", w:"в", x:"кс", z:"з", ź:"з", ż:"ж",
             ch:"х", cz:"ч", dz:"ѕ", dź:"д", rz:"р", sz:"ш", śr:"ср", źr:"зр", ph:"ф", szcz:"щ", czcz:"тщ",
-            ia:"я", ią:"ѭ", ie:"є", ię:"ѩ", ii:"ї", io:"ьо", iu:"ю", ió:"ю", ja:"я", ją:"ѭ", je:"є", ję:"ѩ", ji:"і", jo:"ьо", ju:"ю", jó:"ю"
+            ia:"я", ią:"ѭ", ie:"є", ię:"ѩ", ii:"ії", io:"ьо", iu:"ю", ió:"ю", ja:"я", ją:"ѭ", je:"є", ję:"ѩ", ji:"ій", jo:"ьо", ju:"ю", jó:"ю"
           },
           exceptions: {
-            radi:"раді", mafi:"мафі", magi:"магі", mani:"мані", chemi:"хемі", dies:"диз",
+            mafi:"мафі", magi:"магі", mani:"мані", mari:"марі", chemi:"хемі", dies:"диз",
             tarzan:"тарзан", erzac:"ерзац", murzasich:"мурзасіх", zamarza:"замарза", mierzi:"мєрзі",
-            podzamcz:"подзамч", podzb:"подзб", podzesp:"подзесп", podziem:"подзєм", podzwrot:"подзврот", podziérzgn:"поддєрьґн", podzyg:"подзиґ", ludzk:"людск"
+            podzamcz:"подзамч", podzb:"подзб", podzesp:"подзесп", podziem:"подзєм", podzwrot:"подзврот", podziérzgn:"поддєрьґн", podzyg:"подзиґ", ludzk:"людск",
+            mln: "млн"
           }
         }
       };
@@ -163,7 +165,7 @@
       const SOFT_VOWELS = new Set(["ia","ią","ie","ię","io","ió","iu"]);
       const SPECIAL_PREV = new Set(["c", "cz", "dz", "sz", "szcz", "ż", "czcz"]);
       const SOFT_SIGN_WORDS = new Set([
-        "brew", "brzoskiew", "bukiew", "cerkiew", "chorągiew", "cietrzew", "czerw", "jątrew", "kotew", "krew", "marchew", "mątew", "nów", "rzodkiew", "wiećw", "wrocław", "zełw", "żełw", "żółw", "drób", "gołąb", "głąb", "kiełb", "źreb", "bluszcz", "dreszcz", "czarnoziem", "osiem", "ośm", "siedem", "ziem", "konop", "brocz", "cyc", "kokosz", "mysz", "młodzież", "plesz", "pustosz", "rozkosz", "wesz", "łeż", "łącz"
+        "brew", "brzoskiew", "bukiew", "cerkiew", "chorągiew", "cietrzew", "czerw", "jątrew", "kotew", "krew", "marchew", "mątew", "nów", "rzodkiew", "wiećw", "wrocław", "zełw", "żełw", "żółw", "drób", "gołąb", "głąb", "kiełb", "źreb", "bluszcz", "dreszcz", "czarnoziem", "osiem", "ośm", "siedem", "ziem", "konop", "brocz", "cyc", "kokosz", "młodzież", "plesz", "pustosz", "mysz", "łeż", "wesz", "rozkosz", "łącz"
       ]);
 
       for (const key in SYSTEMS) {
@@ -253,6 +255,47 @@
             const chunkLower = wordLower.slice(i, i + length);
             const chunkOriginal = word.slice(i, i + length);
 
+            if (chunkLower === "ia" || chunkLower === "io" || chunkLower === "ja" || chunkLower === "jo") {
+              const prevChar = wordLower[i - 1] || "";
+              const prevTwo = wordLower.slice(i - 2, i) || "";
+              
+              const coronals = ["d", "t"]; /* "z", "r", "l", "n", "s",*/
+              let isAfterCoronal = coronals.includes(prevChar);
+              
+              if (prevChar === "d" && prevTwo === "zi") isAfterCoronal = false;
+              if (prevChar === "z" && ["d", "s", "r"].includes(prevTwo[0])) isAfterCoronal = false;
+
+              let mapped = "";
+              
+              if (cfg.isRussian) {
+                if (isAfterCoronal) {
+                  const vowelMap = { ia: "иа", io: "ио", ja: "иа", jo: "ио" };
+                  // const vowelMap = { ia: "ья", io: "ьё", ja: "ья", jo: "ьё" };
+                  mapped = vowelMap[chunkLower];
+                }
+              } else {
+                const isAfterVowel = Object.keys(cfg.vowelsHard).includes(prevChar) || Object.keys(cfg.vowelsSoft).includes(prevChar);
+                if (isAfterCoronal) {
+                  const vowelMap = { ia: "ія", io: "іо", ja: "ія", jo: "іо" };
+                  mapped = vowelMap[chunkLower];
+                } else if (i === 0 || isAfterVowel) {
+                  if (chunkLower.endsWith("a")) mapped = "я";
+                  else mapped = "йо";
+                  if (i === 0 && chunkLower === "io") mapped = "іо";
+                } else {
+                  mapped = (chunkLower.endsWith("a")) ? "я" : "ьо";
+                }
+              }
+
+              if (mapped) {
+                result += matchSliceCasing(chunkOriginal, mapped);
+                prevCons = "";
+                i += 2;
+                matched = true;
+                break;
+              }
+            }
+
             if (cfg.consonants[chunkLower]) {
               let mapped = cfg.consonants[chunkLower];
               const nextChar = wordLower[i + length] || "";
@@ -260,9 +303,6 @@
 
               if (chunkLower === "c" && nextChar === "i") mapped = "т";
               else if (chunkLower === "dz" && nextChar === "i") mapped = "д";
-              else if (chunkLower === "d" && SOFT_VOWELS.has(nextTwo)) mapped = cfg.isRussian ? "ды" : "ди";
-              else if (chunkLower === "t" && SOFT_VOWELS.has(nextTwo)) mapped = cfg.isRussian ? "ты" : "ти";
-              else if (chunkLower === "r" && SOFT_VOWELS.has(nextTwo)) mapped = cfg.isRussian ? "ры" : "ри";
 
               if (chunkLower === "ś" || chunkLower === "ź") {
                 const nextCluster3 = wordLower.slice(i + length, i + length + 3);
