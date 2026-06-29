@@ -23,23 +23,21 @@
     <link rel="icon" href="https://raw.githubusercontent.com/glyphdoggo/cyrillic-for-polish/main/icon.svg">
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap');
-
       html, body {
-        background-color: #2C2131;
+        margin: 0;
+        background-color: #3f2346;
         color: #fed;
         height: 100%;
-        margin: 0;
         font-family: "Noto Sans", sans-serif;
         display: flex;
         flex-direction: column;
         justify-content: center;
         text-align: center;
       }
-      
       textarea {
         font-family: "Noto Sans", sans-serif;
         background-color: #fed;
-        color: #2C2131;
+        color: #3f2346;
         width: 100%;
         padding: 20px;
         line-height: 1.25;
@@ -49,22 +47,19 @@
         resize: vertical;
         max-width: 60%;
       }
-
       .interface {
         display: flex;
         flex-direction: column;
         gap: 30px;
       }
-
       .buttons {
         display: flex;
         justify-content: center;
         gap: 30px;
         margin-top: 30px;
       }
-
       .btn {
-       background: #2C2131;
+       background: #3f2346;
        color: #fed;
        border: 2px solid #fed;
        width: 150px;
@@ -74,13 +69,13 @@
        transition: all .3s ease;
        font-size: 16px;
       }
-
       .btn:hover {
-       background: #4A3B52;
-       color: #fff;
-       border-color: #fff;
+       background: #8d549a;
       }
-
+      .btn:active {
+       background: #3f2346;
+       transform: scale(0.95);
+      }
       h3 { font-size: 22px }
       h4 { opacity: .5; font-weight: 400; font-style: italic }
     </style>
@@ -107,7 +102,7 @@
     </div>
     <script>
       const SAMPLES = [
-        "Wszyscy ludzie rodzą się wolni i równi w swej godności i w swych prawach. Są oni obdarzeni rozumem i sumieniem i powinni postępować wobec innych w duchu braterstwa.\n\nKażdy człowiek posiada wszystkie prawa i wolności zawarte w niniejszej Deklaracji, bez względu na jakiekolwiek różnice rasy, koloru skóry, płci, języka, religii, poglądów politycznych lub innych przekonań, narodowości, pochodzenia społecznego, majątku, urodzenia lub jakiekolwiek inne różnice. Nie wolno ponadto czynić żadnej różnicy w zależności od statusu politycznego, prawnego lub międzynarodowego kraju lub terytorium, do którego dana osoba przynależy, bez względu na to, czy jest on niepodległy, powierniczy, autonomiczny lub poddany innym ograniczeniom suwerenności.\n\nKażdy człowiek ma prawo do życia, wolności i bezpieczeństwa swej osoby.",
+        "Wszyscy ludzie rodzą się wolni i równi w swej godności i w swych prawach. Są oni obdarzeni rozumem i sumieniem i powinni postępować wobec innych w duchu braterstwa.\n\nKażdy człowiek posiada wszystkie prawa i wolności zawarte w niniejszej Deklaracji, bez względu na jakiekolwiek różnice rasy, koloru skóry, płci, języka, religii, poglądów politycznych lub innych przekonań, narodowości, pochodzenia społecznego, majątku, urodzenia lub jakiekolwiek inne różnice.\n\nNie wolno ponadto czynić żadnej różnicy w zależności od statusu politycznego, prawnego lub międzynarodowego kraju lub terytorium, do którego dana osoba przynależy, bez względu na to, czy jest on niepodległy, powierniczy, autonomiczny lub poddany innym ograniczeniom suwerenności.\n\nKażdy człowiek ma prawo do życia, wolności i bezpieczeństwa swej osoby.",
         "Litwo, Ojczyzno moja! ty jesteś jak zdrowie;\nIle cię trzeba cenić, ten tylko się dowie,\nKto cię stracił. Dziś piękność twą w całej ozdobie\nWidzę i opisuję, bo tęsknię po tobie.\n\nPanno święta, co Jasnej bronisz Częstochowy\nI w Ostrej świecisz Bramie! Ty, co gród zamkowy\nNowogródzki ochraniasz z jego wiernym ludem!\nJak mnie dziecko do zdrowia powróciłaś cudem\n(— Gdy od płaczącej matki, pod Twoją opiekę\nOfiarowany martwą podniosłem powiekę;\nI zaraz mogłem pieszo, do Twych świątyń progu\nIść za wrócone życie podziękować Bogu —)\nTak nas powrócisz cudem na Ojczyzny łono!...\nTymczasem, przenoś moją duszę utęsknioną\nDo tych pagórków leśnych, do tych łąk zielonych,\nSzeroko nad błękitnym Niemnem rozciągnionych;\nDo tych pól malowanych zbożem rozmaitem,\nWyzłacanych pszenicą, posrebrzanych żytem;\nGdzie bursztynowy świerzop, gryka jak śnieg biała,\nGdzie panieńskim rumieńcem dzięcielina pała,\nA wszystko przepasane jakby wstęgą, miedzą\nZieloną, na niej zrzadka ciche grusze siedzą.",
         "Północny Wiatr i Słońce pokłóciły się o to, który z nich jest silniejszy. Podczas gdy dyskutowali z wielkim żarem i wrzawą, drogą przeszedł Podróżnik owinięty płaszczem.\n\t— Umówmy się — rzekło Słońce — że ten z nas jest silniejszy, kto zedrze z Wędrowca płaszcz.\n\t— Dobrze — warknął Północny Wiatr i natychmiast posłał na człowieka zimny, wyjący podmuch.\n\tPrzy pierwszym natarciu wiatru końce płaszcza owinęły się wokół ciała mężczyzny. Natychmiast więc owinął go szczelnie wokół siebie, a im mocniej wiał Wiatr, tym mocniej trzymał płaszcz.\n\tPółnocny Wiatr szarpał ze złością płaszcz, ale wszystkie jego wysiłki poszły na marne. Wtedy zaczęło Słońce przejęło inicjatywę w działaniu.\n\tZ początku jego promienie były łagodne, a w przyjemnym cieple po przenikliwym chłodzie Północnego Wiatru Podróżnik rozpiął płaszcz i zwisał mu on luźno z ramion.\n\tPromienie słoneczne stawały się coraz cieplejsze.\n\tMężczyzna zdjął czapkę i otarł czoło. W końcu zrobiło mu się tak gorąco, że zdjął płaszcz i aby uciec przed palącym Słońcem, rzucił się w mile widziany cień przydrożnego drzewa.",
         "W Szczebrzeszynie chrząszcz brzmi w trzcinie\nI Szczebrzeszyn z tego słynie.\n\nWół go pyta: „Panie chrząszczu,\nPo cóż pan tak brzęczy w gąszczu?”\n\n„Jak to — po co? To jest praca,\nKażda praca się opłaca”.\n\n„A cóż za to pan dostaje?”\n\n„Też pytanie! Wszystkie gaje,\nWszystkie trzciny po wsze czasy,\nŁąki, pola oraz lasy,\nNawet rzeczki, nawet zdroje,\nWszystko to jest właśnie moje!”\n\nWół pomyślał: „Znakomicie,\nTeż rozpocznę takie życie”.\nWrócił do dom i wesoło\nZaczął brzęczeć pod stodołą\nPo wolemu, tęgim basem.\nA tu Maciek szedł tymczasem.\n\nJak nie wrzaśnie: „Cóż to znaczy?\nCzemu to się wół próżniaczy?!”\n„Jak to? Czyż ja nic nie robię?\nPrzecież właśnie brzęczę sobie!”\n\n„Ja ci tu pobrzęczę, wole,\nDosyć tego! Jazda w pole!”\n\nI dał taką mu robotę,\nŻe się wół oblewał potem.\n\nPo robocie pobiegł w gąszcze.\n„Już ja to na chrząszczu pomszczę!”\n\nLecz nie zastał chrząszcza w trzcinie,\nBo chrząszcz właśnie brzęczał w Pszczynie."
@@ -266,7 +261,7 @@
               if (prevChar === "z" && ["d", "s", "r"].includes(prevTwo[0])) isAfterCoronal = false;
 
               let mapped = "";
-              
+
               if (cfg.isRussian) {
                 if (isAfterCoronal) {
                   const vowelMap = { ia: "иа", io: "ио", ja: "иа", jo: "ио" };
